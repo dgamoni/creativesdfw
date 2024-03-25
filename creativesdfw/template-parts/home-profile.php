@@ -2,7 +2,8 @@
 
 global $post;
 
-$creatives_home_profile_ = get_field('creatives_home_profile', $post->ID);
+$homepage_id = 14;
+$creatives_home_profile_ = get_field('creatives_home_profile', $homepage_id);
 
 ?> 
 

@@ -13,4 +13,7 @@ jQuery(document).ready(function($) {
   	// 	  gallery:{enabled:true},
 	  // });
 
+
+
+
 });

@@ -24,66 +24,57 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wp-bootstrap-starter' ); ?></a>
     <?php if(!is_page_template( 'blank-page.php' ) && !is_page_template( 'blank-page-with-container.php' )): ?>
-	<header id="masthead" class="site-header navbar-static-top navbar-dark bg-primary " role="banner">
-        <div class="container">
-            <nav class="navbar navbar-expand-xl p-0 ">
-                <div class="navbar-brand ">
-                    <?php if ( get_theme_mod( 'wp_bootstrap_starter_logo' ) ): ?>
-                        <a href="<?php echo esc_url( home_url( '/' )); ?>">
-                            <img src="<?php echo esc_attr(get_theme_mod( 'wp_bootstrap_starter_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
-                        </a>
-                    <?php else : ?>
-                        <a class="site-title" href="<?php echo esc_url( home_url( '/' )); ?>"><?php esc_url(bloginfo('name')); ?></a>
-                    <?php endif; ?>
+    	<header id="masthead" class="site-header navbar-static-top navbar-dark bg-primary " role="banner">
+            <div class="container">
+                <nav class="navbar navbar-expand-xl p-0 ">
+                    <div class="navbar-brand ">
+                        <?php if ( get_theme_mod( 'wp_bootstrap_starter_logo' ) ): ?>
+                            <a href="<?php echo esc_url( home_url( '/' )); ?>">
+                                <img src="<?php echo esc_attr(get_theme_mod( 'wp_bootstrap_starter_logo' )); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+                            </a>
+                        <?php else : ?>
+                            <a class="site-title" href="<?php echo esc_url( home_url( '/' )); ?>"><?php esc_url(bloginfo('name')); ?></a>
+                        <?php endif; ?>
 
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="right_menu_wrap ">
-                    <div class="top-menu">
-                        <a href="#" class="">
-                            <i class="fa fa-search"></i>
-                            <span>Search</span>
-                        </a>
-                        <a href="#">
-                            <i class="fas fa-user"></i>
-                            <span>Sign in</span>
-                        </a>
+                    <div class="right_menu_wrap ">
+                        <div class="top-menu">
+                            <a href="#" class="">
+                                <i class="fa fa-search"></i>
+                                <span>Search</span>
+                            </a>
+                            <a href="#">
+                                <i class="fas fa-user"></i>
+                                <span>Sign in</span>
+                            </a>
+                        </div>
+
+                        <?php
+                        wp_nav_menu(array(
+                        'theme_location'    => 'primary',
+                        'container'       => 'div',
+                        'container_id'    => 'main-nav',
+                        'container_class' => 'collapse navbar-collapse justify-content-end',
+                        'menu_id'         => false,
+                        'menu_class'      => 'navbar-nav',
+                        'depth'           => 3,
+                        'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
+                        'walker'          => new wp_bootstrap_navwalker()
+                        ));
+                        ?>
                     </div>
 
-                    <?php
-                    wp_nav_menu(array(
-                    'theme_location'    => 'primary',
-                    'container'       => 'div',
-                    'container_id'    => 'main-nav',
-                    'container_class' => 'collapse navbar-collapse justify-content-end',
-                    'menu_id'         => false,
-                    'menu_class'      => 'navbar-nav',
-                    'depth'           => 3,
-                    'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
-                    'walker'          => new wp_bootstrap_navwalker()
-                    ));
-                    ?>
-                </div>
+                </nav>
+            </div>
+    	</header><!-- #masthead -->
+        
 
-            </nav>
-        </div>
-	</header><!-- #masthead -->
-    
+        <?php if(is_front_page() && !get_theme_mod( 'header_banner_visibility' )): ?>
+            <?php get_template_part( 'template-parts/header', 'banner' ); ?>
+        <?php endif; ?>
 
-    <?php if(is_front_page() && !get_theme_mod( 'header_banner_visibility' )): ?>
-        <?php get_template_part( 'template-parts/header', 'banner' ); ?>
     <?php endif; ?>
-    
-    <?php if(!is_front_page()): ?>
-	
-    <div id="content" class="site-content">
-		<div class="container">
-			<div class="row">
-    
-    <?php endif; ?>
-
-
-                <?php endif; ?>

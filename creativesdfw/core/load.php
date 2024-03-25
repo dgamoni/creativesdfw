@@ -30,3 +30,7 @@ foreach ($dirs as $dir) {
 }
 
 //require_once CORE_PATH.'/lib/jsonstreamingparser/vendor/autoload.php';
+
+
+//lib
+require_once CORE_PATH.'/lib/BFI_Thumb.php';

@@ -1,0 +1,131 @@
+
+
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+} 
+
+@media (max-width: 1200px) {
+	.creatives_home_next_button {
+	    padding: 0px;
+	}
+}
+@media (max-width: 998px) {
+	.home_partners_wrap img {
+		    padding: 10px;
+	}
+	.event_time {
+		display: none;
+	}
+	.the_client_co-column {
+	    border-left: none;
+	    border-right: 1px solid #ebebeb;
+	    padding-top: 15px;
+	}
+	.project_summary-column {
+	    border-right: none;
+	}
+	.project_feedback-column {
+	    padding-left: 15px;
+	    padding-top: 15px;
+	}
+}
+@media (max-width: 768px) {
+	.project_feedback-column {
+		border:none;
+	}
+	.project-column {
+		border:none;
+	}
+	.project_testimonial-column {
+		border:none;
+		padding-left: 15px;
+	}
+	.the_client_co-column {
+		border:none;
+	}
+	#page .entry-content .container {
+	    padding-right: 15px;
+	    padding-left: 15px;
+	}
+	#page .entry-content .container:after {
+		display: none;
+	}
+	#page .entry-header h1.entry-title {
+	    padding-right: 15px;
+	    padding-left: 15px;
+	}
+	.profile-title {
+		margin-bottom: 15px;
+	}
+	.profile-info-element {
+	    margin-right: 10px;
+	}
+	.profile-info {
+	    display: flex;
+	    margin-bottom: 20px;
+	}
+	.acf-map {
+	    width: 90% !important;
+	}
+	.reviews-filter .input-group {
+		margin-bottom: 15px;
+	}
+}
+@media (max-width: 576px) {
+	#reviews {
+		padding-right: 25px;
+	}
+	.awards-wrap ul {
+	    flex-direction: column;
+	    align-items: center;
+	}
+	.home-tax-title {
+	    line-height: 1;
+	    height: 82px;
+	    display: flex;
+	    align-items: center;
+	        
+	}
+	.creatives-block .home-tax-title {
+		padding-left: 100px;
+	}
+	.creatives-block .home-tax {
+	    padding-left: 34px;
+	}	
+	.creatives-block .terms_col {
+	    border-left: none;
+	    margin-left: 0;
+	    padding-left: 0;
+	}
+	.creatives_home_next_button {
+	    flex-direction: column;
+	}	
+	.creatives_home_next_button a {
+		margin-bottom: 10px;
+	}
+	.btn-home-wrap {
+	    flex-direction: column;
+
+    padding-bottom: 60px;
+	}
+	.btn-home-wrap a {
+		margin-bottom: 10px;
+	}
+	.profile-container {
+	    padding: 0;
+	}
+}
+@media (max-width: 396px) {
+	#page .entry-header h1.entry-title {
+	    font-size: 30px;
+	}
+}

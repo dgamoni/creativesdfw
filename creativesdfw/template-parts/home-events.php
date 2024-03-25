@@ -44,7 +44,7 @@ global $post;
 								<span class="event_cat"><?php echo $creativesdfw_event_category->name; ?> :</span>
 								<span class="event_text">
 									<?php echo get_the_title(); ?>
-									<div>
+									<div class="event_time">
 										<?php echo date("F j",strtotime($creativesdfw_event_date)); ?>
 										<span> @ </span>
 										<?php echo date("g a",strtotime($creativesdfw_event_start_time)); ?>

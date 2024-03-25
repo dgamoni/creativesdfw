@@ -1,6 +1,21 @@
 <?php
 function custom_child_scripts() {
 
+
+	wp_enqueue_style(
+		'custom-child-style', 
+		get_stylesheet_directory_uri(). '/assets/css/custom-child.css',
+		array('css-creativesdfw'),
+		'1'
+	);
+
+	wp_enqueue_style(
+		'adaptive', 
+		get_stylesheet_directory_uri(). '/assets/css/adaptive.css',
+		array('css-creativesdfw','custom-child-style'),
+		'1'
+	);
+
 	// wp_enqueue_style(
 	// 	'solid', 
 	// 	'https://use.fontawesome.com/releases/v5.3.1/css/solid.css',
@@ -25,7 +40,13 @@ function custom_child_scripts() {
 	    CORE_URL . '/js/jquery.bxslider.js',
 	    array('jquery')
 	);
-		
+
+	// wp_enqueue_script(
+	//     'masonry',
+	//     CORE_URL . '/js/masonry.pkgd.js',
+	//     array('jquery')
+	// );
+
 	wp_enqueue_script(
 	    'custom_script',
 	    CORE_URL . '/js/custom.js',
