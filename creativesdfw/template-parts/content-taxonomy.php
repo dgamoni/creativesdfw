@@ -62,6 +62,7 @@
 		<?php 
 		global $taxonomy;
 		$taxonomy = get_queried_object()->taxonomy;
+		//var_dump(get_queried_object()->term_id );
 		
 		$args = array(
 			'post_type'   => 'profile',
@@ -125,13 +126,13 @@
 					'operator'         => 'IN',
 				)
 			)
-			,'meta_query' => array(
-				'relation' => 'OR',
-				array(
-					'key' => 'sponsor',
-					'value' => 0
-				)
-			)			
+			// ,'meta_query' => array(
+			// 	'relation' => 'OR',
+			// 	array(
+			// 		'key' => 'sponsor',
+			// 		'value' => null
+			// 	)
+			// )			
 		);
 
 

@@ -129,13 +129,13 @@ $taxonomy_terms = get_terms( $taxonomy, array(
 		            'terms' => $taxonomy_terms
 				)
 			)
-			,'meta_query' => array(
-				'relation' => 'OR',
-				array(
-					'key' => 'sponsor',
-					'value' => 0
-				)
-			)			
+			// ,'meta_query' => array(
+			// 	'relation' => 'OR',
+			// 	array(
+			// 		'key' => 'sponsor',
+			// 		'value' => 0
+			// 	)
+			// )			
 		);
 
 

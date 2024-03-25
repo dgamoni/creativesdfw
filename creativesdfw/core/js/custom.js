@@ -43,6 +43,39 @@ jQuery(document).ready(function($) {
         $(el).attr('data-relevance', index);
     });
 
+    
+
+    //free
+    $('#acf-field_5c653bd362c8a').keyup(function() {
+      //console.log($(this).val());
+      $('#acf-_post_title').val( $(this).val() );
+    });
+
+    //silver
+    $('#acf-field_5c654f08ba383').keyup(function() {
+      //console.log($(this).val());
+      $('#acf-_post_title').val( $(this).val() );
+    });
+
+    //gold
+    $('#acf-field_5c65595a0262a').keyup(function() {
+      //console.log($(this).val());
+      $('#acf-_post_title').val( $(this).val() );
+    });
+
+    //gold 2
+    $('#acf-field_5c656a72dcf26').keyup(function() {
+      //console.log($(this).val());
+      $('#acf-_post_title').val( $(this).val() );
+    });
+
+    //premium
+    $('#acf-field_5c657779b5f07').keyup(function() {
+      //console.log($(this).val());
+      $('#acf-_post_title').val( $(this).val() );
+    });
+
+
     $(document).on('change', '#sort_testimonials', function(e) {
             e.preventDefault();
             var sort = jQuery('#sort_testimonials').val();

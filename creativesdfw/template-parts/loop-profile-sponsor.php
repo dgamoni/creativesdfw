@@ -48,7 +48,7 @@ $info = get_field('info', $post->ID);
 			<div class="row loop-profile-footer">
 				<div class="col-xl-5 profile-footer-testimonial">
 					<?php echo $project_testimonial; ?>
-					<div class="the_client_name">- <?php echo $the_client['the_client_name']; ?></div>
+					<div class="the_client_name">- <a href="<?php echo get_permalink($post->ID); ?>" class="visit" target="_blank"><?php echo $the_client['the_client_name']; ?></a></div>
 				</div>
 				<div class="col-xl-4 specializing">
 					<span class="service_lable">Specializing in:</span>
@@ -59,8 +59,6 @@ $info = get_field('info', $post->ID);
 				<div class="col-xl-3 sponsor-info">
 					<div class="loop-profile-description-wrap">
 						<div class="profile-info">
-							<div class="profile-info-element total"><i class="fas fa-calculator"></i><span><?php echo $info['total']; ?></span></div>
-							<div class="profile-info-element profile-pricing"><i class="far fa-clock"></i><span>$<?php echo $info['pricing']; ?>/hr</span></div>
 							<div class="profile-info-element headcount"><i class="fas fa-users"></i><span><?php echo $info['headcount']; ?></span></div>
 							<div class="profile-info-element"><i class="fas fa-map-marker-alt"></i><span><?php echo $address; ?></span></div>
 						</div>

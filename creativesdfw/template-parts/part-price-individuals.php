@@ -6,12 +6,12 @@ if( have_rows('price') ):
 
 	$i = 0;
 	    
-	    while ( have_rows('price') ) : the_row();
+	    while ( have_rows('pricing_individuals') ) : the_row();
 	    	$i++;
-	        $price_name = get_sub_field('price_name');
-	        $price_for_year = get_sub_field('price_for_year');
-	        $price_for_month = get_sub_field('price_for_month');
-	        $perks_listing_mains = get_sub_field('perks_listing_main');
+	        $price_name = get_sub_field('pricing_name');
+	        $price_for_year = get_sub_field('pricing_for_a_year');
+	        $price_for_month = get_sub_field('pricing_per_month');
+	        $perks_listing_mains = get_sub_field('individual_perks_listing');
 	        //var_dump($perks_listing_main);
 	        ?>
 
@@ -39,10 +39,10 @@ if( have_rows('price') ):
 					        		<div class="perks_listing_element ">
 					        			
 					        			<li>
-						        			<?php if( $perks_listing_main['perks_listing_sub']['css_class_for_icon']):?>
-						        				<span class="fa-li"><i class="fas  <?php echo $perks_listing_main['perks_listing_sub']['css_class_for_icon']; ?> "></i></span>
+						        			<?php if( $perks_listing_main['individual_perks_listing']['individual_css_icon']):?>
+						        				<span class="fa-li"><i class="fas  <?php echo $perks_listing_main['individual_perks_listing']['individual_css_icon']; ?> "></i></span>
 						        			<?php endif; ?>
-						        			<?php echo $perks_listing_main['perks_listing_sub']['name_listing']; ?>
+						        			<?php echo $perks_listing_main['individual_perks_listing']['individual_perk']; ?>
 					        			</li>
 
 									</div>

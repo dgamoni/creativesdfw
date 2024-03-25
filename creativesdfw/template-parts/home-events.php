@@ -13,12 +13,14 @@ global $post;
 		<?php 
 
 
+
 			$args = array(
-				'post_type'   => 'e',
+				'post_type'   => 'events',
 				'post_status' => 'publish',
-				'order'               => 'ASC',
-				'orderby'             => 'date',
+				'order'               => 'DESC',
 				'posts_per_page'         => -1,
+				'meta_key' => 'creativesdfw_event_date',
+				'orderby' => 'meta_value',
 			);
 		
 			$query = new WP_Query( $args );

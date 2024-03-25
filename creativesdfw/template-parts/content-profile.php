@@ -58,8 +58,6 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 					<?php echo $business_description; ?>
 				</div>
 				<div class="col-md-2 profile-info">
-					<div class="profile-info-element total"><i class="fas fa-calculator"></i><?php echo $info['total']; ?></div>
-					<div class="profile-info-element pricing"><i class="far fa-clock"></i>$<?php echo $info['pricing']; ?>/hr</div>
 					<div class="profile-info-element headcount"><i class="fas fa-users"></i><?php echo $info['headcount']; ?></div>
 					<div class="profile-info-element founding_date"><i class="far fa-flag"></i>Founded  <?php echo $info['founding_date']; ?></div>
 				</div>

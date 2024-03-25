@@ -12,3 +12,13 @@ Text Domain: wp-bootstrap-starter-creativesdfw
 Tags: blog, custom-menu, featured-images, threaded-comments, translation-ready, right-sidebar, custom-background, e-commerce, theme-options, sticky-post, full-width-template
 */
 
+.gform_wrapper {
+	form .gform_body .ginput_complex input[type=text] {
+		width:100% !important;
+	}
+
+	input, input[type=text], select, textarea {
+		width:100% !important;
+		@include box-sizing(border-box);
+	}
+}

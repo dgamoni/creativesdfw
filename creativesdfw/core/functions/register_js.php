@@ -6,7 +6,8 @@ function custom_child_scripts() {
 		'custom-child-style', 
 		get_stylesheet_directory_uri(). '/assets/css/custom-child.css',
 		array('css-creativesdfw'),
-		'1'
+		//'1'
+		rand()
 	);
 
 	wp_enqueue_style(
@@ -57,7 +58,8 @@ function custom_child_scripts() {
 	    'custom_script',
 	    CORE_URL . '/js/custom.js',
         array('jquery'), 
-        '1', 
+        //'1', 
+        rand(),
         true  
 	);
 
