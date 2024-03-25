@@ -22,8 +22,8 @@
             ?>
         </p>
         <div class="btn-home-wrap">
-	        <a href="/find-agencies/" class="btn btn-success btn-home fonticon walking"><span>Find an Agency</span></a>
-	        <a href="/find-creatives/" class="btn btn-success btn-home fonticon walking"><span>Find other Creatives</span></a>
+	        <a href="/find-creatives/" class="btn btn-success btn-home fonticon walking"><span>Find DFW Creatives</span></a>
+            <a href="/find-agencies/" class="btn btn-success btn-home fonticon walking"><span>Find DFW Agencies</span></a>
 	    </div>
 
         <!-- <a href="#content" class="page-scroller"><i class="fa fa-fw fa-angle-down"></i></a> -->

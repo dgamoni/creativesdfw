@@ -96,13 +96,228 @@
 		$query = new WP_Query( $args );
 		//var_dump($query);
 
+
+// sponsor + premium_sponsor + Premium user
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				setup_postdata( $post );
-				get_template_part( 'template-parts/loop', 'profile-sponsor' );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Premium" ) {
+					$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+					if ( $premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				} 
 			}
 		}
+
+// sponsor + premium_sponsor + Gold user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Gold" ) {
+					$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+					if ( $premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				} 
+			}
+		}
+
+// sponsor + premium_sponsor + Silver user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Silver" ) {
+					$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+					if ( $premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				} 
+			}
+		}
+
+// sponsor + premium_sponsor + Free user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Free" ) {
+					$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+					if ( $premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				} 
+			}
+		}
+
+//sponsor + promoted + Premium user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Premium" ) {				
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + promoted + Gold user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Gold" ) {				
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + promoted + Silver user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Silver" ) {				
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + promoted + Free user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Free" ) {				
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + Premium user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//get_template_part( 'template-parts/loop', 'profile-sponsor' );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Premium" ) {				
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + Gold user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//get_template_part( 'template-parts/loop', 'profile-sponsor' );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Gold" ) {				
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + Silver user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//get_template_part( 'template-parts/loop', 'profile-sponsor' );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Silver" ) {				
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+//sponsor + Free user
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//get_template_part( 'template-parts/loop', 'profile-sponsor' );
+				$premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Free" ) {				
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives' && !$premium_sponsor) {
+						get_template_part( 'template-parts/loop', 'profile-sponsor' );
+					}
+				}
+			}
+		}
+
+
 		wp_reset_postdata();
 
 		?>
@@ -111,7 +326,7 @@
 		$args = array(
 			'post_type'   => 'profile',
 			'post_status' => 'publish',
-			'order'               => 'DESC',
+			'order'               => 'ASC',
 			'orderby'             => 'date',
 			'posts_per_page'         => -1,
 			//'s'				=> 'test',
@@ -140,13 +355,160 @@
 		$query = new WP_Query( $args );
 		//var_dump($query);
 
+
+// Premium promoted
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				setup_postdata( $post );
-				get_template_part( 'template-parts/loop', 'profile' );
+				//var_dump($post->post_author);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				//var_dump($status['plan']);
+				if ( $status['plan'] == "Premium" ) {
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
 			}
 		}
+
+// Gold promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//var_dump($post->post_author);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				//var_dump($status['plan']);
+				if ( $status['plan'] == "Gold" ) {
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+// Silver promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//var_dump($post->post_author);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				//var_dump($status['plan']);
+				if ( $status['plan'] == "Silver" ) {
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+// Free promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				//var_dump($post->post_author);
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				//var_dump($status['plan']);
+				if ( $status['plan'] == "Free" ) {
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+// Premium NON promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Premium" ) {
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+// Gold NON promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Gold" ) {
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+// Silver NON promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Silver" ) {
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+// Free NON promoted
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				setup_postdata( $post );
+				$user_author = get_user_by('id', $post->post_author);
+				$status = check_status_plan($user_author->user_email);
+				if ( $status['plan'] == "Free" ) {
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_ag',$post->ID) ) && $taxonomy == 'agencies') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					} else 
+					if (!in_array( get_queried_object()->term_id, get_field( 'category_to_be_promoted_cr',$post->ID) ) && $taxonomy == 'creatives') {
+						get_template_part( 'template-parts/loop', 'profile' );
+					}
+				}
+			}
+		}
+
+
+
 		wp_reset_postdata();
 
 		?>

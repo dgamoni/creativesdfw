@@ -21,57 +21,17 @@
 			<?php if ( is_user_logged_in() ) { ?>
 				<?php 
 					$user = wp_get_current_user();
-					//var_dump($user->user_email);
-					$user_plan = get_userplan_by_id($user->id);
-					//var_dump($user_plan);
-					//echo "<pre>", var_dump($user_plan), "</pre>";
-					$user_plan_by_email = get_userplan_by_email($user->user_email);
-					//echo "<pre>", var_dump($user_plan_by_email), "</pre>";
+					$info = check_status_plan($user->user_email);
+					//var_dump($info);
+					$plan = $info['plan'];
 
-
-					$plan = 'Free';
-					//foreach ($user_plan as $key => $user_plan_) {
-					foreach ($user_plan_by_email as $key => $user_plan_) {
-						$d1=new DateTime($user_plan_['date_created']);
-						//var_dump($d1);
-						$d2=new DateTime('now');
-						//$d2=new DateTime('2019-02-29');
-						//var_dump($d2);
-						$diff=$d2->diff($d1);
-						//var_dump($diff);
-						$interval = date_diff($d1, $d2);
-						//var_dump($interval->days);
-						// $sub_plan = explode('|', $user_plan_[1]);
-						$sub_plan = explode('|', $user_plan_[4]);
-						//var_dump($diff->days);
-
-						//if($user_plan_['payment_status'] == 'Paid' && $diff->days < 365) {
-						if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
-							if($plan == 'Free') {
-								$plan = $sub_plan[0];
-							} else if($plan == 'Silver' && $sub_plan[0] == 'Gold' || $sub_plan[0] == 'Premium') {
-								$plan = $sub_plan[0];
-							} else  if($plan == 'Gold' && $sub_plan[0] == 'Premium') {
-								$plan = $sub_plan[0];
-							}
-							
-						}
-						//var_dump($sub_plan[0]);
-
-						// if($user_plan_['payment_status'] == 'Active' && $sub_plan[0] == 'Silver' && $interval->days < 30 ) {
-						// 	$plan = $sub_plan[0];
-						// } else 
-						// if($user_plan_['payment_status'] == 'Active' && $sub_plan[0] == 'Gold' && $interval->days < 30 ) {
-						// 	$plan = $sub_plan[0];
-						// }
-					}
-
-					//echo "<pre>", var_dump($user_plan), "</pre>";
 				?>
 				<span class="loop-profile-title"><span class="lwa-title-sub" ><?php echo __( 'Hi', 'login-with-ajax' ) . " " . $user->display_name;  ?></span></span>
 				<div class="notic"><p>Your subscription plan - <?php echo $plan; ?>.</p></div>
-				<div class="notic <?php echo $plan; ?>"><a href="/listing-prices/">Please upgrade your plan to add more information</a></div>
+				<!-- <div class="notic <?php echo $plan; ?>"><a href="/listing-prices/">Please upgrade your plan to add more information</a></div> -->
+				<a class="front_log_out btn btn-outline-success btn-acf" id="" href="<?php echo home_url('/edit-profile/'); ?>" target="_blank"><?php esc_html_e( 'Edit Profile' ,'login-with-ajax') ?></a> 
 				<a class="front_log_out btn btn-outline-success btn-acf" id="wp-logout" href="<?php echo wp_logout_url( home_url() ); ?>"><?php esc_html_e( 'Log Out' ,'login-with-ajax') ?></a> 
+				
 			<?php } else {
 				echo '<p>'. __('Please register to begin creating your profile <br>or log in to edit it.', ''). '</p>';
 				} ?>

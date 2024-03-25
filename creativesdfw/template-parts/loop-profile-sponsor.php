@@ -25,12 +25,27 @@ $project_testimonial = $profile_testimonials[0]['project_testimonial'];
 $the_client = $profile_testimonials[0]['the_client'];
 //var_dump($the_client);
 
+
+// $user_author = get_user_by('id', $post->post_author);
+// $status = check_status_plan($user_author->user_email);
+// $premium_sponsor = get_field( 'premium_sponsor',$post->ID);
+// var_dump($premium_sponsor);
+// var_dump($status['plan']);
+
+
 global $taxonomy;
 // $taxonomy = get_queried_object()->taxonomy;
 //var_dump($taxonomy);
 
 $terms = get_the_terms( $post->ID, $taxonomy );
 $info = get_field('info', $post->ID);
+
+
+$adwords_pixel_code = get_field('adwords_pixel_code',$post->ID);
+//var_dump($adwords_pixel_code);
+if($adwords_pixel_code) {
+	echo $adwords_pixel_code;
+}
 ?>
 
 <div class="loop-profile-wrap-sponsor">
@@ -48,7 +63,9 @@ $info = get_field('info', $post->ID);
 			<div class="row loop-profile-footer">
 				<div class="col-xl-5 profile-footer-testimonial">
 					<?php echo $project_testimonial; ?>
-					<div class="the_client_name">- <a href="<?php echo get_permalink($post->ID); ?>" class="visit" target="_blank"><?php echo $the_client['the_client_name']; ?></a></div>
+					<?php if ( $the_client['the_client_name'] ) : ?>
+						<div class="the_client_name">- <a href="<?php echo get_permalink($post->ID); ?>" class="visit" target="_blank"><?php echo $the_client['the_client_name']; ?></a></div>
+					<?php endif; ?>
 				</div>
 				<div class="col-xl-4 specializing">
 					<span class="service_lable">Specializing in:</span>
@@ -59,8 +76,12 @@ $info = get_field('info', $post->ID);
 				<div class="col-xl-3 sponsor-info">
 					<div class="loop-profile-description-wrap">
 						<div class="profile-info">
-							<div class="profile-info-element headcount"><i class="fas fa-users"></i><span><?php echo $info['headcount']; ?></span></div>
-							<div class="profile-info-element"><i class="fas fa-map-marker-alt"></i><span><?php echo $address; ?></span></div>
+							<?php if ( $info['headcount'] ): ?>
+								<div class="profile-info-element headcount"><i class="fas fa-users"></i><span><?php echo $info['headcount']; ?></span></div>
+							<?php endif; ?>
+							<?php if ( $address ): ?>
+								<div class="profile-info-element"><i class="fas fa-map-marker-alt"></i><span><?php echo $address; ?></span></div>
+							<?php endif; ?>
 						</div>
 					</div>					
 				</div>				

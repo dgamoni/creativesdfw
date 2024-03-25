@@ -52,7 +52,7 @@ if( have_rows('price') ):
 				        </div>
 
 				        <div class="sign-up-now">
-				        	<a href="<?php if($price_name == 'free listing'){ echo home_url('/add-profile/'); } else { echo home_url('/sign-up/'); } ?>" class="btn btn-block btn-primary ">
+				        	<a href="<?php if($price_name == 'free listing'){ echo home_url('/add-profile/'); } else { echo home_url('/sign-up/').'?type=individuals&plan='.$price_name; } ?>" class="btn btn-block btn-primary ">
 				 				<span>Sign up now</span>
 				 			</a>
 				        </div>

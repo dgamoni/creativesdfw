@@ -58,7 +58,7 @@ function custom_child_scripts() {
 	    'custom_script',
 	    CORE_URL . '/js/custom.js',
         array('jquery'), 
-        //'1', 
+        //'1.1', 
         rand(),
         true  
 	);

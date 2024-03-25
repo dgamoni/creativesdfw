@@ -154,4 +154,47 @@ jQuery(document).ready(function($) {
 
 
 
-});
+   $(document).on('click', '.set_primary', function(e) {
+        e.preventDefault();
+        var userid = jQuery(this).attr('data-userid');
+        var level = jQuery(this).attr('data-level');
+        var plan = jQuery(this).attr('data-plan');
+        var gf_entries = jQuery(this).attr('data-gf_entries');
+        // console.log(userid);
+        // console.log(level);
+        // console.log(plan);
+        // console.log(gf_entries);
+
+
+        $.ajax({
+                type    : "POST",
+                url     : MyAjax.ajaxurl,
+                dataType: "json",
+                data    : "action=set_primary&userid=" + userid+"&level="+level+"&plan="+plan + "&gf_entries="+gf_entries,
+                success : function (a) {
+                    console.log(a);
+                    console.log(a.data);
+                    
+                    if(a.success){
+                      $('.primary_col .make_primary .active_primary').hide();
+                      $('.primary_col .make_primary .set_primary').show();
+                      $('#subscriptions #items tr').removeClass('primary_col');
+                      $('.'+a.data.userid+'-'+a.data.level+'-'+a.data.plan+'-'+a.data.gf_entries+'').addClass('primary_col');
+                      $('.'+a.data.userid+'-'+a.data.level+'-'+a.data.plan+'-'+a.data.gf_entries+' .make_primary .set_primary').hide();
+                      $('.'+a.data.userid+'-'+a.data.level+'-'+a.data.plan+'-'+a.data.gf_entries+' .make_primary .active_primary').show();
+                      $('.user_info_left .current_type').text(a.data.level);
+                      $('.user_info_left .current_plan').text(a.data.plan);
+                    }
+
+                    //jQuery('#profile-loop-wrap').html(a.out).css({'opacity': ''});
+                }
+        }); //end ajax            
+
+   });// end set_primary
+
+
+
+
+
+
+}); //end ready

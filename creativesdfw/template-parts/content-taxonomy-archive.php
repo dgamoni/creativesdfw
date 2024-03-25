@@ -105,6 +105,7 @@ $taxonomy_terms = get_terms( $taxonomy, array(
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				setup_postdata( $post );
+				// var_dump(get_field( 'category_to_be_promoted_ag',$post->ID));
 				get_template_part( 'template-parts/loop', 'profile-sponsor' );
 			}
 		}
@@ -147,6 +148,8 @@ $taxonomy_terms = get_terms( $taxonomy, array(
 			while ( $query->have_posts() ) {
 				$query->the_post();
 				setup_postdata( $post );
+				//var_dump(get_field( 'category_to_be_promoted_ag',$post->ID));
+				//var_dump($post);
 				get_template_part( 'template-parts/loop', 'profile' );
 			}
 		}

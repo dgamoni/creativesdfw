@@ -19,6 +19,7 @@ $location = get_field('map', $post->ID);
 $info = get_field('info', $post->ID);
 
 $awards = get_field('awards', $post->ID);
+$awards_listed = get_field('awards_listed', $post->ID);
 
 $portfolio_group = get_field('portfolio_group', $post->ID);
 $porfolio_size = array( 'width' => 280, 'height' => 250 );
@@ -58,68 +59,92 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 					<?php echo $business_description; ?>
 				</div>
 				<div class="col-md-2 profile-info">
-					<div class="profile-info-element headcount"><i class="fas fa-users"></i><?php echo $info['headcount']; ?></div>
-					<div class="profile-info-element founding_date"><i class="far fa-flag"></i>Founded  <?php echo $info['founding_date']; ?></div>
+					<?php if ( $info['headcount'] ) : ?>
+						<div class="profile-info-element headcount"><i class="fas fa-users"></i><?php echo $info['headcount']; ?></div>
+					<?php endif; ?>
+					<?php if ( $info['founding_date'] ) : ?>
+						<div class="profile-info-element founding_date"><i class="far fa-flag"></i>Founded  <?php echo $info['founding_date']; ?></div>
+					<?php endif; ?>
 				</div>
 				<div class="col-md-4">
 					<?php //var_dump($location); ?>
-					<div class="acf-map-address">
-						<i class="fas fa-map-marker-alt"></i>
-						<?php echo $location['address']; ?>
-					</div>
-					<div class="acf-map">
-						<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
-					</div>
-
+					<?php if ( $location['address'] ) : ?>
+						<div class="acf-map-address">
+							<i class="fas fa-map-marker-alt"></i>
+							<?php echo $location['address']; ?>
+						</div>
+						<div class="acf-map">
+							<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+						</div>
+					<?php endif; ?>	
 				</div>				
 			</div>
 		</div>
-		<div id="focus" class="section awards-wrap">
-			<h2>Awards</h2>
-			<?php 
-				if( $awards ): ?>
-				    <ul >
-				        <?php foreach( $awards as $image ): ?>
-				            <li>
-				            	<?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
-				            </li>
-				        <?php endforeach; ?>
-				    </ul>
-				<?php endif; ?>
+		<?php if ( $awards || $awards_listed ) : ?>
+			<div id="focus" class="section awards-wrap">
+				<h2>Awards</h2>
+				<?php 
+					if( $awards ): ?>
+					    <ul >
+					        <?php foreach( $awards as $image ): ?>
+					            <li>
+					            	<?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+					            </li>
+					        <?php endforeach; ?>
+					    </ul>
+					<?php endif; ?>
 
-		</div>
-		<div id="portfolio" class="section col-md-10">
-			<h2>Portfolio</h2>
-			<div class="portfolio_descriptions">
-				<?php echo $portfolio_group['portfolio_descriptions']; ?>
+					<?php 
+					//var_dump($awards_listed);
+					if( $awards_listed ): 
+						$awards_listed_arr = explode("\n", $awards_listed);
+						//var_dump($awards_listed_arr);
+						?>
+					    <ul >
+					        <?php foreach( $awards_listed_arr as $awards_listed_ ): ?>
+					            <li>
+					            	<?php echo $awards_listed_; ?>
+					            </li>
+					        <?php endforeach; ?>
+					    </ul>
+					<?php endif; ?>
+
 			</div>
-			<div class="portfolio_wrap">
-				<div class="row">
-					<?php foreach ($portfolio_group['portfolio'] as $key => $portfolio) : ?>
-						<?php //var_dump($portfolio['project_name']); ?>
-						<?php //$thumb_url =  wp_get_attachment_url( $portfolio['project_image'] ); ?>
+		<?php endif; ?>
+		<?php if ( $portfolio_group['portfolio'] ) : ?>
+			<div id="portfolio" class="section col-md-10">
+				<h2>Portfolio</h2>
+				<div class="portfolio_descriptions">
+					<?php echo $portfolio_group['portfolio_descriptions']; ?>
+				</div>
+				<div class="portfolio_wrap">
+					<div class="row">
+						<?php foreach ($portfolio_group['portfolio'] as $key => $portfolio) : ?>
+							<?php //var_dump($portfolio['project_name']); ?>
+							<?php //$thumb_url =  wp_get_attachment_url( $portfolio['project_image'] ); ?>
 
-						<?php if($key > 5) { $more = 'p-more'; } else { $more = ''; } ?>
+							<?php if($key > 5) { $more = 'p-more'; } else { $more = ''; } ?>
 
- 			            <a href="<?php echo $portfolio['project_url']; ?>" class="lead-child-link col-md-4 <?php echo $more; ?>">
-	                        <div class="leadership-content" style="background-image: url('<?php echo bfi_thumb( $portfolio['project_image'], $porfolio_size  ); ?>');">
-	                            <h2 class="post-title leadership-title" >
-	                                <?php echo $portfolio['project_name']; ?>
-	                            </h2>
-	                            <div class="leadership-description">
-	                            	<p><?php echo $portfolio['project_name']; ?></p>
-	                            	<?php echo $portfolio['project_description']; ?>
-	                            	<!-- <div class="arrow_go">></div> -->
-	                            </div>
-	                        </div> 
-	                    </a>
-	    
-	                <?php endforeach; ?>
-	               
-	            </div>
-	             <?php if ( count($portfolio_group['portfolio']) > 5 ) { echo '<div class="show_all">Show All +</div>'; } ?>
+	 			            <a href="<?php echo $portfolio['project_url']; ?>" class="lead-child-link col-md-4 <?php echo $more; ?>">
+		                        <div class="leadership-content" style="background-image: url('<?php echo bfi_thumb( $portfolio['project_image'], $porfolio_size  ); ?>');">
+		                            <h2 class="post-title leadership-title" >
+		                                <?php echo $portfolio['project_name']; ?>
+		                            </h2>
+		                            <div class="leadership-description">
+		                            	<p><?php echo $portfolio['project_name']; ?></p>
+		                            	<?php echo $portfolio['project_description']; ?>
+		                            	<!-- <div class="arrow_go">></div> -->
+		                            </div>
+		                        </div> 
+		                    </a>
+		    
+		                <?php endforeach; ?>
+		               
+		            </div>
+		             <?php if ( count($portfolio_group['portfolio']) > 5 ) { echo '<div class="show_all">Show All +</div>'; } ?>
+				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 		<?php $profile_testimonials = get_field('profile_testimonials_post', $post->ID); ?>
 		
 		<?php if ($profile_testimonials): ?>

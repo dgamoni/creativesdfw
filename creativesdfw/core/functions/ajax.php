@@ -211,3 +211,44 @@ function sort_profile_func() {
 		exit;
 
 }
+
+
+add_action( 'wp_ajax_set_primary', 'set_primary_func' );
+add_action( 'wp_ajax_nopriv_set_primary', 'set_primary_func' );
+function set_primary_func() {
+	
+	$user = wp_get_current_user();
+
+	$userid = $_POST['userid'];
+	$level = $_POST['level'];
+	$plan = $_POST['plan'];
+	$gf_entries = $_POST['gf_entries'];
+
+	$res['userid'] = $userid;
+	$res['current_user'] = $user->ID;
+	$res['level'] = $level;
+	$res['plan'] = $plan;
+	$res['gf_entries'] = $gf_entries;
+
+	$entry = GFAPI::get_entry( $gf_entries );
+	$res['entry'] = $entry;
+	$d1 = new DateTime($entry['date_created']);
+	$d2 = new DateTime('now');
+	$diff = $d2->diff($d1);
+	$res['diff'] = $diff->days;
+
+	if ( $entry['payment_status'] == 'Active' && $diff->days < 365 ) {
+
+		update_field('subscription_primary_id', $entry['id'], 'user_'.$user->ID.'');
+		update_field('subscription_plan', $plan, 'user_'.$user->ID.'');
+		update_field('subscription_type', $level, 'user_'.$user->ID.'');
+
+		wp_send_json_success($res);
+	} else {
+		wp_send_json_error($res);
+	}
+
+	// wp_send_json_success($res);
+	//echo json_encode( $res );
+	exit;	
+}

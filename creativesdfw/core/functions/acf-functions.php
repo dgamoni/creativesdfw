@@ -54,28 +54,29 @@ if ( is_user_logged_in() ) {
 
           $user = wp_get_current_user();
           //$user_plan = get_userplan_by_id($user->id);
-          $user_plan_by_email = get_userplan_by_email($user->user_email);
-          $plan = 'Free';
+          //$user_plan_by_email = get_userplan_by_email($user->user_email);
+          $status = check_status_plan($user->user_email);
+          $plan = $status['plan'];
 
-          foreach ($user_plan_by_email as $key => $user_plan_) {
+          // foreach ($user_plan_by_email as $key => $user_plan_) {
 
-              $d1=new DateTime($user_plan_['date_created']);
-              $d2=new DateTime('now');
-              $diff=$d2->diff($d1);
-              $interval = date_diff($d1, $d2);
-              $sub_plan = explode('|', $user_plan_[4]);
+          //     $d1=new DateTime($user_plan_['date_created']);
+          //     $d2=new DateTime('now');
+          //     $diff=$d2->diff($d1);
+          //     $interval = date_diff($d1, $d2);
+          //     $sub_plan = explode('|', $user_plan_[4]);
 
-              if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
-                if($plan == 'Free') {
-                  $plan = $sub_plan[0];
-                } else if($plan == 'Silver' && $sub_plan[0] == 'Gold' || $sub_plan[0] == 'Premium') {
-                  $plan = $sub_plan[0];
-                } else  if($plan == 'Gold' && $sub_plan[0] == 'Premium') {
-                  $plan = $sub_plan[0];
-                }
-              }
+          //     if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
+          //       if($plan == 'Free') {
+          //         $plan = $sub_plan[0];
+          //       } else if($plan == 'Silver' && $sub_plan[0] == 'Gold' || $sub_plan[0] == 'Premium') {
+          //         $plan = $sub_plan[0];
+          //       } else  if($plan == 'Gold' && $sub_plan[0] == 'Premium') {
+          //         $plan = $sub_plan[0];
+          //       }
+          //     }
 
-          }
+          // }
 
           if( $plan == 'Free') {
             add_filter('acf/validate_value/name=fron_agencies', 'only_allow_3', 20, 4);

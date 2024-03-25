@@ -21,7 +21,7 @@ $sponsor = get_field('sponsor', $post->ID);
 			<div class="row">
 				<div class="_col-md-5">
 					<div class="loop-profile-description-wrap">
-						<?php if($address): ?>
+						<?php if($address && $address != ' '): ?>
 							<span class="col-md-2 loop-profile-address"><i class="fas fa-map-marker-alt"></i><?php echo $address; ?></span>
 						<?php endif; ?>
 						<?php if($phone): ?>
