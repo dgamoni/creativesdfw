@@ -122,36 +122,41 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 	             <?php if ( count($portfolio_group['portfolio']) > 5 ) { echo '<div class="show_all">Show All +</div>'; } ?>
 			</div>
 		</div>
-		<div id="reviews" class="section">
-		    <div class="row">
-		    	<div class="reviews-title col-md-6">		
-					<h2>Testimonials</h2>
-					<div>It means more when others say how great you are.</div>
-				</div> <!-- /reviews-title -->
-				<div class="reviews-filter col-md-6">
-					<div class="row">
-						<div class="input-group col-md-6">
-						  <div class="input-group-prepend">
-						    <button class="btn btn-outline-secondary" type="button">Sort by</button>
-						  </div>
-						  <select class="custom-select" id="inputGroupSelect03" aria-label="">
-						    <option selected>Relevance</option>
-						    <option value="1">One</option>
-						    <option value="2">Two</option>
-						    <option value="3">Three</option>
-						  </select>
-						</div> <!-- /input-group -->
+		<?php $profile_testimonials = get_field('profile_testimonials_post', $post->ID); ?>
+		
+		<?php if ($profile_testimonials): ?>
+			<div id="reviews" class="section">
+			    <div class="row">
+			    	<div class="reviews-title col-md-6">		
+						<h2>Testimonials</h2>
+						<div>It means more when others say how great you are.</div>
+					</div> <!-- /reviews-title -->
+					<div class="reviews-filter col-md-6">
+						<div class="row">
+							<div class="input-group col-md-6">
+							  <div class="input-group-prepend">
+							    <button class="btn btn-outline-secondary" type="button">Sort by</button>
+							  </div>
+							  <select class="custom-select" id="inputGroupSelect03" aria-label="">
+							    <option selected>Relevance</option>
+							    <option value="1">One</option>
+							    <option value="2">Two</option>
+							    <option value="3">Three</option>
+							  </select>
+							</div> <!-- /input-group -->
 
-						<div class="input-group col-md-6">
-							<input type="text" class="form-control" aria-label="Filter Reviews" placeholder="Filter Reviews">
-						</div> <!-- /input-group -->
-					</div> <!-- /row -->
-				</div> <!-- /reviews-filter -->
-				<div class="reviews-wrap col-md-12 col-lg-10">
-					<?php get_template_part( 'template-parts/part', 'testimonials' ); ?>
-				</div>
-			</div> <!-- /row -->
-		</div> <!-- /#reviews -->
+							<div class="input-group col-md-6">
+								<input type="text" class="form-control" aria-label="Filter Reviews" placeholder="Filter Reviews">
+							</div> <!-- /input-group -->
+						</div> <!-- /row -->
+					</div> <!-- /reviews-filter -->
+					<div class="reviews-wrap col-md-12 col-lg-10">
+						<?php //get_template_part( 'template-parts/part', 'testimonials' ); ?>
+						<?php get_template_part( 'template-parts/part', 'testimonials-acf' ); ?>
+					</div>
+				</div> <!-- /row -->
+			</div> <!-- /#reviews -->
+		<?php endif; ?>
 
 	</div><!-- .entry-content -->
 

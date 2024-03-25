@@ -10,15 +10,44 @@
 
 }
 @media (min-width: 1200px) {
-
+	
 } 
 
 @media (max-width: 1200px) {
+	.price-header-border {
+	    padding: 10px;
+	}
 	.creatives_home_next_button {
 	    padding: 0px;
 	}
+	.profile-footer-testimonial {
+		margin-bottom: 10px;
+	}
+	.the_client_name {
+	    text-align: left;
+	}
+	.specializing {
+	    border-top: 1px solid #ebebeb;
+	    border-bottom: 1px solid #ebebeb;
+	        padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+	}
+	.sponsor-info .profile-info {
+	    padding-left: 0;
+	    display: flex;
+	}
+	.sponsor-info .profile-info-element {
+	    padding-right: 10px;
+	}
+	.loop-profile-sponsor {
+	    line-height: 1;
+	}
 }
 @media (max-width: 998px) {
+	.price-header {
+	    margin-bottom: 100px;
+	}
 	.home_partners_wrap img {
 		    padding: 10px;
 	}
@@ -81,6 +110,25 @@
 	}
 }
 @media (max-width: 576px) {
+	.loop-profile-title span {
+	    padding-left: 0;
+	    line-height: 1.5;
+	}
+	h1.entry-title {
+	    line-height: 1.5;
+	}
+	.sponsor-info .profile-info {
+	    flex-direction: column;
+	    /*align-items: center;*/
+	}
+	.loop-profile-description span {
+	    margin-bottom: 5px;
+	}
+	.loop-profile-description-wrap {
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	}
 	#reviews {
 		padding-right: 25px;
 	}

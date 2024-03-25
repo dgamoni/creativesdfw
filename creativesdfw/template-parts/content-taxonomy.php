@@ -27,25 +27,26 @@
 			<div class="row filter-row">
 				<div class="col-md-6">
 					<div class="countlabel">
-						<?php echo get_queried_object()->count; ?> <?php echo get_queried_object()->taxonomy; ?>
+						<span class="countvalue"><?php echo get_queried_object()->count; ?></span> <?php echo get_queried_object()->taxonomy; ?>
 					</div>
 				</div>
 				<div class="tax-filter col-md-6">
 					<div class="row ">
-						<div class="input-group col-md-6">
+						<div class="input-group col-xl-6">
 						  <div class="input-group-prepend">
 						    <button class="btn btn-outline-secondary" type="button">Sort by</button>
 						  </div>
-						  <select class="custom-select" id="inputGroupSelect03" aria-label="">
-						    <option selected>Sponsored</option>
-						    <option value="1">One</option>
-						    <option value="2">Two</option>
-						    <option value="3">Three</option>
+						  <select class="custom-select" id="sort_profile" aria-label="" data-tax="<?php echo get_queried_object()->taxonomy; ?>" data-term="<?php echo get_queried_object()->term_id; ?>">
+						    <option value="sponsor" selected>Sponsored</option>
+						    <option value="DESC">DESC</option>
+						    <option value="ASC">ASC</option>
+						    <!-- <option value="date">Date</option> -->
+						    <!-- <option value="name">Name</option> -->
 						  </select>
 						</div> <!-- /input-group -->
 
-						<div class="input-group col-md-6">
-							<input type="text" class="form-control" aria-label="Filter Results" placeholder="Filter Results">
+						<div class="input-group col-xl-6">
+							<input id="search_profile" type="text" class="form-control" aria-label="Filter Results" placeholder="Filter Results">
 						</div> <!-- /input-group -->
 					</div> <!-- /row -->
 				</div> <!-- /reviews-filter -->
@@ -56,15 +57,19 @@
 <!-- 	<div class="container loop-container">
 		<div class="filter-divider"></div>
 	</div> -->
-	<div class="container loop-container profile-loop-wrap">
+	<div id="profile-loop-wrap" class="container loop-container profile-loop-wrap">
 
 		<?php 
+		global $taxonomy;
+		$taxonomy = get_queried_object()->taxonomy;
+		
 		$args = array(
 			'post_type'   => 'profile',
 			'post_status' => 'publish',
 			'order'               => 'DESC',
 			'orderby'             => 'date',
 			'posts_per_page'         => -1,
+			//'s'				=> 'test',
 			// Taxonomy Parameters
 			'tax_query' => array(
 				'relation' => 'AND',
@@ -108,6 +113,7 @@
 			'order'               => 'DESC',
 			'orderby'             => 'date',
 			'posts_per_page'         => -1,
+			//'s'				=> 'test',
 			// Taxonomy Parameters
 			'tax_query' => array(
 				'relation' => 'AND',

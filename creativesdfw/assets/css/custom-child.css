@@ -781,14 +781,16 @@ a.home-tax-more {
     font-size: 28px;
     font-weight: 500;
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: left;
     flex-wrap: wrap;
-
+    padding-bottom: 8px;
 }
 .loop-profile-wrap-sponsor .loop-profile-title {
       border-bottom: 1px solid #ebebeb;
-    padding-bottom: 40px;  
+   /* padding-bottom: 40px;  */
+   line-height: 83px;
+   padding-bottom: 0px;
 }
 .loop-profile-wrap-sponsor .loop-profile-description {
     padding: 30px 0px;
@@ -812,16 +814,20 @@ a.visit {
     /*background-color: #d93b20;*/
         display: inline-block;
     font-size: 16px;
-    padding: 16px 16px;
+    /*padding: 16px 16px;*/
+        padding: 32px 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
         border-top: 1px solid #ebebeb;
-    margin: 16px 0 16px 0;
+    /*margin: 16px 0 16px 0;*/
+        margin: 0;
 }
 a.visit.bg {
     background-color: #d93b20;
-    margin-top: 0px;
+    /*margin-top: 0px;*/
+    padding: 16px;
+    margin: 16px 0 16px 0;
 }
 .visit span {
     color: black;
@@ -848,6 +854,9 @@ a.visit.bg {
     border: 2px solid #3a3a3c;
     margin-bottom: 90px;
         padding: 18px;
+        -webkit-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+-moz-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
 }
 .loop-profile-title span {
     padding-left: 15px;
@@ -900,4 +909,186 @@ a.visit.bg {
 .sponsor-info .profile-info-element {
     display: flex;
     align-items: center;
+}
+.loop-profile-sponsor {
+    color: #86bd2c;
+    font-size: 14px;
+    position: absolute;
+    right: 23px;
+    top: 0px;
+}
+.tax-filter .input-group  {
+        margin-bottom: 5px;
+}
+
+/*price*/
+.pricing {
+    margin-top: 103px;
+    margin-bottom: 57px;
+}
+.pricing .fa-ul {
+    margin-left: 0;
+}
+.pricecard {
+/*    border: 1px solid #ebebeb;
+
+    border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;*/
+}
+.pricecard-body {
+    border: 1px solid #ebebeb;
+border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+box-shadow: 1px 1px 5px 0px #ebebeb;
+position: relative;
+}
+.pricing .fa-li {
+    left: -6px;
+}
+.price-header {
+    border-radius: 6px 6px 0 0;
+    margin-bottom: 42px;
+}
+.color-1 .price-header {
+    background-color: #5ca403;
+}
+.color-1 .btn-primary {
+    background-color: #5ca403;
+    border-color: #5ca403;
+}
+.color-1 .price_for_month_value {
+    color: #5ca403;
+}
+.color-1 .price-header-border, .color-1 .price-header-border::after  {
+    background-color: #5ca403;
+}
+.color-2 .price-header {
+    background-color: #a48f03;
+}
+.color-2 .btn-primary {
+    background-color: #a48f03;
+    border-color: #a48f03;
+}
+.color-2 .price_for_month_value {
+    color: #a48f03;
+}
+.color-2 .price-header-border, .color-2 .price-header-border::after  {
+    background-color: #a48f03;
+}
+.color-3 .price-header {
+    background-color: #868686;
+}
+.color-3 .btn-primary {
+    background-color: #868686;
+    border-color: #868686;
+}
+.color-3 .price_for_month_value {
+    color: #868686;
+}
+.color-3 .price-header-border, .color-3 .price-header-border::after {
+    background-color: #868686;
+}
+.color-4 .price-header {
+    background-color: #b4b6aa;
+}
+.color-4 .btn-primary {
+    background-color: #b4b6aa;
+    border-color: #b4b6aa;
+}
+.color-4 .price_for_month_value {
+    color: #b4b6aa;
+}
+.color-4 .price-header-border, .color-4 .price-header-border::after {
+    background-color: #b4b6aa;
+}
+.price-header h5 {
+    font-size: 22px;
+color: white;
+line-height: 2;
+}
+.price_for_year {
+    font-size: 21px;
+color: #959595;
+margin: 0;
+}
+.price_for_month {
+    font-size: 34px;
+font-weight: 600;
+border-bottom: 1px solid #ebebeb;
+padding-bottom: 16px;
+}
+.period {
+    color: #959595;
+}
+.price-header-border {
+
+}
+.price-header-border {
+/*    width: 100%;
+    height: 0;
+    border-left: 141px solid transparent;
+    border-right: 141px solid transparent;
+    border-top: 18px solid #5ca403;
+    margin-top: -11px;*/
+}
+.price-header-border {
+  /*background: orange;*/
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  /*padding: 1em;*/
+  z-index: -1;
+  padding: inherit;
+}
+.price-header-border:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding-bottom: 10%;
+  /*background: orange;*/
+  -webkit-clip-path: polygon(-50% 0%, 150% 0%, 50% 100%);;
+          clip-path: polygon(-50% 0%, 150% 0%, 50% 100%);
+}
+.sign-up-now {
+padding: 25px;
+}
+.sign-up-now a {
+    font-size: 21px;
+    border-radius: 6px;
+line-height: 2;
+text-transform: inherit;
+font-weight: 500;
+}
+.perks_listing_main {
+    display: flex;
+
+justify-content: center;
+
+/*flex-basis: 50%;*/
+padding: 0 25px;
+}
+.perks_listing_element  .fa-li {
+    position: inherit;
+    text-align: center;
+    width: 2em;
+    line-height: inherit;
+    margin-right: 10px;
+
+}
+.perks_listing_element .fas {
+    color: #5ca403;
+}
+.perks_listing_element li {
+    font-size: 15px;
+    line-height: 1.7;
+}
+.price-money {
+    padding: 0 25px;
 }

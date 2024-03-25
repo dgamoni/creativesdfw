@@ -57,6 +57,6 @@ function bgt_cpt_testimonials() {
 	register_post_type( 'testimonials', $args );
 
 }
-add_action( 'init', 'bgt_cpt_testimonials', 0 );
+//add_action( 'init', 'bgt_cpt_testimonials', 0 );
 
 }
