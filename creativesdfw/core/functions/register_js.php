@@ -14,7 +14,8 @@ function custom_child_scripts() {
 		'adaptive', 
 		get_stylesheet_directory_uri(). '/assets/css/adaptive.css',
 		array('css-creativesdfw','custom-child-style'),
-		'1'
+		//'1'
+		rand()
 	);
 
 	// wp_enqueue_style(
@@ -68,3 +69,7 @@ function custom_child_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'custom_child_scripts' ); 
 
+function custom_admin_theme_style() {
+    wp_enqueue_style('custom-admin-style', CORE_URL .'/css/custom_admin_style.css', array(), rand());
+}
+add_action('admin_enqueue_scripts', 'custom_admin_theme_style');

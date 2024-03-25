@@ -46,15 +46,22 @@ $adwords_pixel_code = get_field('adwords_pixel_code',$post->ID);
 if($adwords_pixel_code) {
 	echo $adwords_pixel_code;
 }
+
+global $status_sponsor;
+if ( $status_sponsor ) {
+	$status_sponsor_ = $status_sponsor;
+} else {
+	$status_sponsor_ = 'sponsor';
+}
 ?>
 
-<div class="loop-profile-wrap-sponsor">
+<div class="loop-profile-wrap-sponsor status_sponsor_<?php echo $status_sponsor_; ?>">
 	<div class="row sponsor-header">
 		<div class="loop-profile-title-wrap col-xl-10">
 			<div class="loop-profile-title">
 				<?php echo wp_get_attachment_image( $logo, $size ); ?>
 				<span><?php echo get_the_title($post->ID); ?></span>
-				<div class="loop-profile-sponsor">SPONSOR</div>
+				<div class="loop-profile-sponsor"><?php echo $status_sponsor_; ?></div>
 			</div>
 
 			<div  class="loop-profile-description">

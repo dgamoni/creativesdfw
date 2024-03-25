@@ -12,7 +12,7 @@ $sponsor = get_field('sponsor', $post->ID);
 //var_dump($sponsor);
 ?>
 
-<?php if (!$sponsor): ?>
+<?php //if (!$sponsor): ?>
 	<div class="loop-profile-wrap">
 		<div class="loop-profile-title">
 			<?php echo get_the_title($post->ID); ?>
@@ -35,4 +35,4 @@ $sponsor = get_field('sponsor', $post->ID);
 			</div>
 		</div>
 	</div>
-<?php endif; ?>
+<?php //endif; ?>

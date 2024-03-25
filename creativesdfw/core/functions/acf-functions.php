@@ -108,3 +108,82 @@ if ( is_user_logged_in() ) {
 
 
 }
+
+
+add_action('acf/save_post', 'my_save_post');
+function my_save_post( $post_id ) {
+  
+  // bail early if not a contact_form post
+  if( get_post_type($post_id) !== 'profile' ) {
+     return;
+  }
+  
+  // bail early if editing in admin
+  if( is_admin() ) {
+    return;
+  }
+
+  // vars
+  $user = wp_get_current_user();
+  $info = check_status_plan($user->user_email);
+  $plan = $info['plan'];
+  $post = get_post( $post_id );
+  $user_url = 'user-edit.php?user_id='.$user->ID;
+  $prof_url = 'post.php?post='.$post_id.'&action=edit';
+  $business_name = get_field( 'business-name', $post_id ); 
+  $post_status = $post->post_status;
+
+  // update status post by plan
+  if( $post_id !== 'new_post' ) {
+      if( $plan == 'Free' && $post->post_status != 'draft' ) {
+        wp_update_post( array('ID' => $post_id, 'post_status'  => 'draft') );
+        $post_status = 'draft';
+
+      } else if( $plan == 'Gold' && $post->post_status != 'publish' ) {
+        wp_update_post( array('ID' => $post_id, 'post_status'  => 'publish') );
+        $post_status = 'publish';
+
+      } else if( $plan == 'Premium' && $post->post_status != 'publish' ) {
+        wp_update_post( array('ID' => $post_id, 'post_status'  => 'publish') );
+        $post_status = 'publish';
+      
+      } else if( $plan == 'Silver' && $post->post_status != 'publish' ) {
+        wp_update_post( array('ID' => $post_id, 'post_status'  => 'publish') );
+        $post_status = 'publish';
+      }
+
+  }
+  
+
+  
+  // email data
+  //$to = 'dgamoni@gmail.com';
+  $multiple_to_recipients = get_administrator_email();
+  $multiple_to_recipients[] = 'dgamoni@gmail.com';
+  $to = $multiple_to_recipients;
+  $headers = 'From: WordPress <wordpress@creativesindfw.com>' . "\r\n";
+  $subject = '[Creatives in DFW] New profile added/updated';
+  $body = 'Hi Admin' . "\r\n";
+  $body .= 'User <a href="'. admin_url( $user_url, 'https' ).'" target="_blank">' .$user->display_name. '</a> <'.$user->user_email.'> added/updated Profile. <br>'. "\r\n";
+  $body .= 'Post <a href="'. admin_url( $prof_url, 'https' ).'" target="_blank">' .$post->post_title. '</a> in status '.$post_status.' <br>'. "\r\n";
+  $body .= 'Business Name: '.$business_name . '<br>' . "\r\n";
+  $body .= 'User plan: '.$info['plan'].' '. $info['type'] .' <br>'. "\r\n";
+  // send email
+  wp_mail($to, $subject, $body, $headers );
+  
+}
+
+function wpse27856_set_content_type(){
+    return "text/html";
+}
+add_filter( 'wp_mail_content_type','wpse27856_set_content_type' );
+
+
+function get_administrator_email(){
+    $blogusers = get_users('role=Administrator');
+    //print_r($blogusers);
+    foreach ($blogusers as $user) {
+        $multiple_to_recipients[] = $user->user_email;
+      } 
+  return $multiple_to_recipients;
+}

@@ -869,9 +869,14 @@ a.visit.bg {
     border: 2px solid #3a3a3c;
     margin-bottom: 90px;
         padding: 18px;
-        -webkit-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+/*        -webkit-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
 -moz-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);*/
+}
+.loop-profile-wrap-sponsor.status_sponsor_premium {
+    -webkit-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+    -moz-box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
+    box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);  
 }
 .loop-profile-title span {
     padding-left: 15px;
@@ -933,6 +938,7 @@ box-shadow: 6px 6px 1px 0px rgba(134,189,44,1);
     position: absolute;
     right: 23px;
     top: 0px;
+    text-transform: uppercase;
 }
 .tax-filter .input-group  {
         margin-bottom: 5px;
@@ -1169,7 +1175,7 @@ mark {
 	position: relative;
 }
 .header_search  .search-form label {
-	
+	width: 185px;
 }
 .header_search  .search-form label:after {
     content: "\f002";
@@ -1466,4 +1472,28 @@ div.wpcf7 {
 }
 .expired .expired_info {
     display: block;
+}
+.hidden_filed_front {
+  display: none;
+}
+header#masthead {
+    border-bottom: 5px solid #86bd2b;
+}
+#menu-main-menu #menu-item-1295 {
+    background-color: #86bd2b;
+    margin-left: 24px;
+}
+#menu-main-menu #menu-item-1295 a {
+    color: black;
+    margin-left: 0;
+}
+#menu-main-menu #menu-item-1295 a:before {
+    display: none;
+}
+.navbar-expand-xl .navbar-collapse {
+    margin-bottom: -14px;
+}
+.creatives #masthead .navbar-nav > li > a {
+    padding: 7px 7px;
+    margin-left: 16px;
 }

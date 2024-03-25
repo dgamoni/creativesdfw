@@ -46,40 +46,44 @@ function get_register_data_for_auto_login( $user_id ) {
  */
 add_filter( 'wp_mail', 'set_up_auto_login_link' );
 function set_up_auto_login_link( $atts ) {
-	
+
+	// Pick up the global array of user info from 'user_register' action.
+	global $my_array;
+
 	// Check if email subject contains "Your username and password".
-	if ( isset ( $atts ['subject'] ) && $atts['subject'] = '[Creatives in DFW] Your username and password info' ) {
-		if ( isset( $atts['message'] ) ) {
+	if( isset($my_array['ID']) ) {
+		if ( isset ( $atts ['subject'] ) && $atts['subject'] = '[Creatives in DFW] Your username and password info' ) {
+			if ( isset( $atts['message'] ) ) {
 
-			// Pick up the global array of user info from 'user_register' action.
-			global $my_array;
 
-			// Assemble the data for the query string.
-			$query_args = array(
-				'action'=> 'rp',
-				'id' => $my_array['ID'],
-				'u'  => $my_array['user_login'],
-				'k'  => $my_array['activation_key'],
-			);
-			$query_args2 = array(
-				'action'=> 'rp',
-				'key'  => $my_array['activation_key'],
-				'login'  => $my_array['user_login'],
 
-			);
-			// Prepare data for search/replace on the login link (to add the query string).
-			$old = '/wp-login.php';
-			$new = add_query_arg( $query_args, '/wp-login.php' );
-			$new2 = add_query_arg( $query_args2, '/wp-login.php' );
+				// Assemble the data for the query string.
+				$query_args = array(
+					'action'=> 'rp',
+					'id' => $my_array['ID'],
+					'u'  => $my_array['user_login'],
+					'k'  => $my_array['activation_key'],
+				);
+				$query_args2 = array(
+					'action'=> 'rp',
+					'key'  => $my_array['activation_key'],
+					'login'  => $my_array['user_login'],
 
-			// Replace the original login link with the new one containing query string data for auto login.
-			//$atts['message'] = str_replace( $old, $new, $atts['message'] );
-			$atts['message'] .= 'Automaticlaly logged and add new profile page:'. get_site_url() . $new;
-			
+				);
+				// Prepare data for search/replace on the login link (to add the query string).
+				$old = '/wp-login.php';
+				$new = add_query_arg( $query_args, '/wp-login.php' );
+				$new2 = add_query_arg( $query_args2, '/wp-login.php' );
 
+				// Replace the original login link with the new one containing query string data for auto login.
+				//$atts['message'] = str_replace( $old, $new, $atts['message'] );
+				$atts['message'] .= 'Automaticlaly logged and add new profile page:'. get_site_url() . $new;
+				
+
+			}
 		}
 	}
-
+	
 	return $atts;
 }
 

@@ -1,7 +1,7 @@
 <?php 
 $user = wp_get_current_user();
 $info = check_status_plan($user->user_email);
-var_dump($info);
+//var_dump($info);
 //var_dump($user);
 $date = date_create($user->user_registered);
 
@@ -11,6 +11,7 @@ $date = date_create($user->user_registered);
     
     <div class="row">
   		<div class="col-sm-8">
+
   			<span class="loop-profile-title"><span class="lwa-title-sub" ><?php echo __( 'Hi', 'login-with-ajax' ) . " " . $user->display_name;  ?></span></span>
   		</div>
     	<div class="col-sm-4">
@@ -36,6 +37,8 @@ $date = date_create($user->user_registered);
 					</span>
 				</li>
 			</ul> 
+
+
             
         </div><!--/col-3-->
 
@@ -103,7 +106,7 @@ $date = date_create($user->user_registered);
 			                    		echo '<th>'.$sub_plan.'</th>';
 			                    		echo '<th>'.date_format(date_create($entries['date_created']), 'Y-m-d').'</th>';
 			                    		echo '<th>'.$expiryDate.'</th>';
-			                    		echo '<th class="make_primary"><a class="set_primary" href="#" data-gf_entries="'.$entries['id'].'" data-userid="'.$user->ID.'" data-level="'.$level.'" data-plan="'.$sub_plan.'">make primary</a><span class="active_primary">primary</span><a href="'.home_url('/sign-up/').'?type='.$level.'&plan='.$sub_plan.'" target="_blank" class="expired_info">upgrate</a></th>';
+			                    		echo '<th class="make_primary"><a class="set_primary" href="#" data-gf_entries="'.$entries['id'].'" data-userid="'.$user->ID.'" data-level="'.$level.'" data-plan="'.$sub_plan.'">make primary</a><span class="active_primary">primary</span><a href="'.home_url('/sign-up/').'?type='.$level.'&plan='.$sub_plan.'" target="_blank" class="expired_info">upgrade</a></th>';
 			                    	echo '</tr>';
 		                    	}
 		                    	if ( !get_userplan_by_email($user->user_email) ) {
@@ -135,6 +138,7 @@ $date = date_create($user->user_registered);
 		                      <th>Categories</th>
 		                      <th>Sponsor</th>
 		                      <th>Premium</th>
+		                      <th>Modification</th>
 		                    </tr>
 		                  </thead>
 		                  <tbody id="items">
@@ -155,7 +159,7 @@ $date = date_create($user->user_registered);
 										$tax = get_the_taxonomies($post->ID);
 										//var_dump($tax);
 
-										echo '<tr>';
+										echo '<tr class="list_profile_'.$post->ID.'">';
 											echo '<th>' . $post->post_title . '</th>';
 											//echo '<th>' . get_the_date( 'Y-m-d', $post->ID ) . '</th>';
 											echo '<th>' . $post->post_status . '</th>';
@@ -167,7 +171,10 @@ $date = date_create($user->user_registered);
 
 											echo '<th>';
 												if( get_field('sponsor',  $post->ID) ){
-													echo 'yes';
+													echo 'yes ';
+													if ( $post->post_status == 'publish' ) {
+														echo '<a href="'.get_the_permalink( $post->ID ).'" target="_blank">view</a>';
+													}
 												}
 											echo '</th>';
 											echo '<th>';
@@ -175,6 +182,7 @@ $date = date_create($user->user_registered);
 													echo 'yes';
 												}
 											echo '</th>';
+											echo '<th><a href="/update-profile/?profie='.$post->ID.'" >edit</a></th>';
 										echo '</tr>';
 									}
 									wp_reset_postdata();
@@ -189,7 +197,9 @@ $date = date_create($user->user_registered);
 		                  </tbody>
 		                </table>
 		            </div>	              
-   
+   					
+   					<a class="front_log_out btn btn-outline-success btn-acf" id="" href="<?php echo home_url('/add-profile/'); ?>" ><?php esc_html_e( 'Add new Profile' ,'login-with-ajax') ?></a>
+
 	            </div><!--/tab-pane-->
 
 
@@ -212,3 +222,69 @@ $date = date_create($user->user_registered);
 		$('.<?php echo $user->ID.'-'.$info["type"].'-'.$info["plan"].'-'.$info["entryid"]; ?> .make_primary .active_primary').show();
 	});
 </script>
+
+<?php 
+
+// test
+		
+		// $args = array(
+		// 	'post_type'   => 'profile',
+		// 	'post_status' => 'publish',
+		// 	'posts_per_page'         => -1,
+		// );
+
+		// $query = new WP_Query( $args );
+		// $message = '';
+
+		// // if ( $query->have_posts() ) {
+		// // 	while ( $query->have_posts() ) {
+		// // 		$query->the_post();
+		// // 		setup_postdata( $post );
+		// foreach ($query->posts as $key => $post) {
+
+
+		// 		$role = get_user_by('id', $post->post_author )->roles[0];
+		// 		$sponsor = get_field('sponsor' , $post->ID);
+		// 		$premium_sponsor = get_field('premium_sponsor' , $post->ID);
+
+		// 		if( $role != 'administrator' ) {
+
+		// 			$user_email = get_user_by('id', $post->post_author )->user_email;
+		// 			$plan = check_status_plan($user_email)["plan"];
+					
+		// 			if ( $plan == 'Free' && $sponsor ) {
+		// 				update_field('sponsor', false,  $post->ID );
+		// 				$message .= '<a href="'.get_permalink( $post->ID ).'">'.$post->post_title. '</a> sposor to false ';
+		// 			} else if ( $plan != 'Free' && !$sponsor) {
+		// 				update_field('sponsor', 1,  $post->ID );
+		// 				$message .= '<a href="'.get_permalink( $post->ID ).'">'.$post->post_title. '</a> sposor to true ';
+		// 			} else if ( $plan == 'Premium' && !$premium_sponsor ) {
+		// 				update_field('premium_sponsor', 1,  $post->ID );
+		// 				$message .= '<a href="'.get_permalink( $post->ID ).'">'.$post->post_title. '</a> premium_sponsor to true ';
+		// 			} else {
+		// 				$message .= $post->post_title. 'not updated $sponsor='.$sponsor;
+		// 			}
+
+		// 			// echo '<pre>';
+
+		// 				//echo "<pre>", var_dump($query->posts), "</pre>";
+		// 				$message .= '$post->ID='.$post->ID.' ';
+		// 				$message .= '$post->ID='.$post->ID.' ';
+		// 				$message .= '$post->post_author= '.$post->post_author.'   ';
+		// 				$message .=  'sponsor='.get_field('sponsor' , $post->ID).'   ';
+		// 				$message .= 'title='.$post->post_title.'   ';
+		// 				$message .=  'user_by='.get_user_by('id', $post->post_author )->roles[0].'   ';
+		// 				$message .=  'check_status='.check_status_plan($user_email)["plan"].'   ';
+		// 				$message .= '------------------------------/n ';
+		// 			// echo '</pre>';
+
+		// 		}
+
+
+		// } // foreach		
+		// // 	}//while
+		// // } //if
+
+		// wp_reset_postdata();
+		// //wp_mail( 'dgamoni@gmail.com', 'Автоматическое письмо', $message );
+		// var_dump($message);

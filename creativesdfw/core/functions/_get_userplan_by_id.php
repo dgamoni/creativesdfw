@@ -80,7 +80,9 @@ function check_status_plan($user_email) {
 		} else {
 			$sub_plan = $sub_plan2;
 		}
+
 		//var_dump($sub_plan);
+
 		$type = $user_plan_[8];
 		if(!$user_plan_[8]) {
 			$type = 'agencies';
@@ -88,8 +90,12 @@ function check_status_plan($user_email) {
 
 		//$entryid = '';
 
+		//var_dump($diff->days);
+		//var_dump($user_plan_['payment_status']);
+
 		//if($user_plan_['payment_status'] == 'Paid' && $diff->days < 365) {
-		if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
+		//if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
+		if($user_plan_['payment_status'] == 'Active' || $user_plan_[10] == 'ADMIN' && $diff->days < 365) { // add cupon for admin
 			$status = 'Active';
 			
 			if($plan == 'Free') {
@@ -124,7 +130,7 @@ function check_status_plan($user_email) {
 			//$days = $diff->days;
 		}
 
-		
+	//var_dump($plan);	
 
 		//var_dump($sub_plan[0]);
 
@@ -153,11 +159,15 @@ function check_status_plan($user_email) {
 	$info['type'] = $type_;
 	$info['entryid'] = $entryid;
 
-	$entry_primary = GFAPI::get_entry( $subscription_primary_id );
-	if ( get_diff_interval( $entry_primary['date_created'] ) < 365 ) {
-		$info['plan'] = $subscription_plan;
-		$info['type'] = $subscription_type;
-		$info['entryid'] = $subscription_primary_id;
+	if ( $subscription_primary_id ) {
+		$entry_primary = GFAPI::get_entry($subscription_primary_id);
+		if ( $entry_primary['status'] == 'active' && get_diff_interval( $entry_primary['date_created'] ) < 365 ) {
+			$info['plan'] = $subscription_plan;
+			$info['type'] = $subscription_type;
+			$info['entryid'] = $subscription_primary_id;
+			$info['status'] = $entry_primary['status'];
+		}
+		
 	}
 
 	return $info;
@@ -169,4 +179,14 @@ function get_diff_interval($date) {
 	$d2 = new DateTime('now');
 	$diff = $d2->diff($d1);
 	return $diff->days;
+}
+
+function check_user_post($profie_id) {
+	$author_id = get_post_field ('post_author', $profie_id);
+	$user = wp_get_current_user();
+	if ( $author_id == $user->ID ) {
+		return true;
+	} else {
+		return false;
+	}
 }
