@@ -11,9 +11,14 @@
 
 ?>
 <?php if(!is_page_template( 'blank-page.php' ) && !is_page_template( 'blank-page-with-container.php' )): ?>
+			
+	<?php if(!is_front_page()): ?>
+			
 			</div><!-- .row -->
 		</div><!-- .container -->
 	</div><!-- #content -->
+
+	<?php endif; ?>
     
 	<footer id="colophon" class="site-footer navbar-dark bg-primary" role="contentinfo">
 	                

@@ -179,7 +179,7 @@ a {
 
 a:hover {
   color: #6b9430;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -593,7 +593,8 @@ pre code {
 @media (min-width: 1200px) {
   .container {
    /* max-width: 1140px;*/
-    max-width: 1242px;
+    /*max-width: 1242px;*/
+        max-width: 1270px;
   }
 }
 
@@ -2488,7 +2489,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   padding: 0.375rem 0.75rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 0.25rem;
+  border-radius: 0;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -2596,8 +2597,9 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #212529;
-  background-color: #93C54B;
-  border-color: #93C54B;
+  /*background-color: #86bd2b;*/
+  background-color: transparent;
+    border-color: #86bd2b;
 }
 
 .btn-success:hover {

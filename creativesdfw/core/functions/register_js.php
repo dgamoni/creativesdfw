@@ -15,6 +15,17 @@ function custom_child_scripts() {
 	// 	'5.3.1'
 	// );
 
+	wp_enqueue_style(
+		'jquery-bxslider', 
+		CORE_URL . '/css/jquery.bxslider.css'
+	);
+
+	wp_enqueue_script(
+	    'jquery-bxslider',
+	    CORE_URL . '/js/jquery.bxslider.js',
+	    array('jquery')
+	);
+		
 	wp_enqueue_script(
 	    'custom_script',
 	    CORE_URL . '/js/custom.js',
