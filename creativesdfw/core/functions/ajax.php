@@ -17,6 +17,14 @@ function sort_profile_func() {
 	$taxonomy = $tax;
 
 
+	if( $term == 'all' ) {
+		$termss = get_terms( $tax ); 
+		// convert array of term objects to array of term IDs
+		$term_ids = wp_list_pluck( $termss, 'term_id' );
+	} else {
+		$term_ids =  array( $term );
+	}
+
 
 	if($sort == 'sponsor'):
 
@@ -34,7 +42,8 @@ function sort_profile_func() {
 				array(
 					'taxonomy'         => $tax,
 					'field'            => 'id',
-					'terms'            => array( $term ),
+					//'terms'            => array( $term ),
+					'terms'            => $term_ids,
 					'include_children' => true,
 					'operator'         => 'IN',
 				)
@@ -54,8 +63,12 @@ function sort_profile_func() {
 		}
 
 		$query = new WP_Query( $args );
-		relevanssi_do_query($query);
+		//relevanssi_do_query($query);
 		//var_dump($query);
+
+		if($search_query){
+			relevanssi_do_query($query);
+		}
 
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
@@ -71,6 +84,7 @@ function sort_profile_func() {
 		?>
 
 		<?php 
+
 		$args = array(
 			'post_type'   => 'profile',
 			'post_status' => 'publish',
@@ -83,7 +97,8 @@ function sort_profile_func() {
 				array(
 					'taxonomy'         => $tax,
 					'field'            => 'id',
-					'terms'            => array( $term ),
+					//'terms'            => array( $term ),
+					'terms'            => $term_ids,
 					'include_children' => true,
 					'operator'         => 'IN',
 				)
@@ -102,8 +117,13 @@ function sort_profile_func() {
 		}
 
 		$query = new WP_Query( $args );
-		relevanssi_do_query($query);
+		//relevanssi_do_query($query);
 		//var_dump($query);
+
+		if($search_query){
+			relevanssi_do_query($query);
+		}
+
 
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {
@@ -129,7 +149,8 @@ function sort_profile_func() {
 				array(
 					'taxonomy'         => $tax,
 					'field'            => 'id',
-					'terms'            => array( $term ),
+					//'terms'            => array( $term ),
+					'terms'            => $term_ids,
 					'include_children' => true,
 					'operator'         => 'IN',
 				)
@@ -148,8 +169,13 @@ function sort_profile_func() {
 		}
 
 		$query = new WP_Query( $args );
-		relevanssi_do_query($query);
+		//var_dump($args);
 		//var_dump($query);
+		//relevanssi_do_query($query);
+
+		if($search_query){
+			relevanssi_do_query($query);
+		}		
 
 		if ( $query->have_posts() ) {
 			while ( $query->have_posts() ) {

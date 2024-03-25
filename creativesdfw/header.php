@@ -43,14 +43,22 @@
 
                     <div class="right_menu_wrap ">
                         <div class="top-menu">
-                            <a href="#" class="">
+
+                            <a href="#" class="header_search_link">
                                 <i class="fa fa-search"></i>
                                 <span>Search</span>
+                                
                             </a>
+                            <div class="header_search">
+                                <?php get_search_form(); ?>
+                            </div>
                             <a href="#">
                                 <i class="fas fa-user"></i>
                                 <span>Sign in</span>
                             </a>
+
+
+
                         </div>
 
                         <?php

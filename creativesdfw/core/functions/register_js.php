@@ -41,6 +41,12 @@ function custom_child_scripts() {
 	    array('jquery')
 	);
 
+	wp_enqueue_script(
+	    'jquery-mark',
+	    CORE_URL . '/js/jquery.mark.min.js',
+	    array('jquery')
+	);
+
 	// wp_enqueue_script(
 	//     'masonry',
 	//     CORE_URL . '/js/masonry.pkgd.js',

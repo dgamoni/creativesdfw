@@ -26,6 +26,7 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 							<span><?php echo $project_services; ?></span>
 						<?php } ?>
 					</div>
+
 					<div class="project_budget">
 						<i class="fas fa-tag"></i>
 						<?php echo $project['project_budget']; ?>

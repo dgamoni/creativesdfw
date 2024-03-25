@@ -5,7 +5,7 @@ $profile_testimonials = get_field('profile_testimonials_post', $post->ID);
 //var_dump($profile_testimonials);
 ?>
 
-<div class="container">
+<div class="container profile_testimonials_post_wrap">
 	
 		<?php foreach ($profile_testimonials as $key => $profile_testimonial) {
 			// $project = get_sub_field('project', $profile_testimonial);
@@ -27,11 +27,21 @@ $profile_testimonials = get_field('profile_testimonials_post', $post->ID);
 							<span><?php echo $project_services; ?></span>
 						<?php } ?>
 					</div>
-					<div class="project_budget">
+					<?php 
+						$budget_arr = explode(' ',$profile_testimonial['project']['project_budget']);
+						//var_dump($budget_arr[0]);
+						$budget = preg_replace("/[^0-9,]/", "",  $budget_arr[0]); 
+						//var_dump($budget);
+					?>					
+					<div class="project_budget" data-val="<?php echo $budget; ?>">
 						<i class="fas fa-tag"></i>
 						<?php echo  $profile_testimonial['project']['project_budget']; ?>
 					</div>
-					<div class="project_present">
+					<?php 
+						$present = preg_replace("/[^0-9,]/", "",  $profile_testimonial['project']['project_present']);
+						//var_dump($present);
+					?>
+					<div class="project_present" data-val="<?php echo $present; ?>">
 						<i class="fas fa-calendar-alt"></i>
 						<?php echo  $profile_testimonial['project']['project_present']; ?>
 					</div>

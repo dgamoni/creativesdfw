@@ -36,7 +36,7 @@ $terms_creatives = get_terms( $args_creatives );
 				 			<div class="home-term-description"><?php echo $terms_agencie->description; ?></div>
 				 		</div>
 			 		<?php } ?>
-			 		<div class="home-tax-more-wrap"><a class="home-tax-more" href="<?php echo home_url('/agencies/'); ?>"><?php _e('SEE MORE', 'wp-bootstrap-starter-creativesdfw'); ?></a></div>
+			 		<div class="home-tax-more-wrap"><a class="home-tax-more" href="<?php echo home_url('/find-agencies/'); ?>"><?php _e('SEE MORE', 'wp-bootstrap-starter-creativesdfw'); ?></a></div>
 		 		</div>
 
 		 </div>
@@ -53,7 +53,7 @@ $terms_creatives = get_terms( $args_creatives );
 				 			<div class="home-term-description"><?php if($terms_creative->description): echo $terms_creative->description; endif; ?></div>
 				 		</div>
 			 		<?php } ?>
-			 		<div  class="home-tax-more-wrap" ><a class="home-tax-more" href="<?php echo home_url('/creatives/'); ?>"><?php _e('SEE MORE', 'wp-bootstrap-starter-creativesdfw'); ?></a></div>
+			 		<div  class="home-tax-more-wrap" ><a class="home-tax-more" href="<?php echo home_url('/find-other-creatives/'); ?>"><?php _e('SEE MORE', 'wp-bootstrap-starter-creativesdfw'); ?></a></div>
 		 		</div>
 		 </div>
 	</div>

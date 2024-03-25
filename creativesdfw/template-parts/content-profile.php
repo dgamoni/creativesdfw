@@ -137,16 +137,16 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 							  <div class="input-group-prepend">
 							    <button class="btn btn-outline-secondary" type="button">Sort by</button>
 							  </div>
-							  <select class="custom-select" id="inputGroupSelect03" aria-label="">
-							    <option selected>Relevance</option>
-							    <option value="1">One</option>
-							    <option value="2">Two</option>
-							    <option value="3">Three</option>
+							  <select class="custom-select" id="sort_testimonials" aria-label="">
+							    <option value="relevance" selected>Relevance</option>
+							    <option value="budget">Budget</option>
+							    <option value="present">Present</option>
+							    <!-- <option value="3">Three</option> -->
 							  </select>
 							</div> <!-- /input-group -->
 
 							<div class="input-group col-md-6">
-								<input type="text" class="form-control" aria-label="Filter Reviews" placeholder="Filter Reviews">
+								<input type="text" id="search_testimonials" class="form-control" aria-label="Filter Reviews" placeholder="Filter Reviews">
 							</div> <!-- /input-group -->
 						</div> <!-- /row -->
 					</div> <!-- /reviews-filter -->
