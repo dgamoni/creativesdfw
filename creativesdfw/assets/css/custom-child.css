@@ -1497,3 +1497,26 @@ header#masthead {
     padding: 7px 7px;
     margin-left: 16px;
 }
+.contact-data div {
+    padding: 5px 0;
+}
+.contact-data {
+    margin-bottom: 10px;
+}
+#contact h4 {
+    margin-bottom: 5px;
+}
+
+body.logged-in.page-sign-up #input_1_6 {
+   /* display: none;*/
+}
+body.logged-in.page-sign-up #input_1_6 {
+   pointer-events:none;
+}
+
+.page-template-template-add-profile .acf-fields.-left > .acf-field > .acf-label {
+    width: 21%;
+}
+.page-template-template-add-profile .acf-fields.-left > .acf-field > .acf-input {
+    width: 79%;
+}

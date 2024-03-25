@@ -25,6 +25,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
+	<!-- Font Awesome -->
+	<script src="https://kit.fontawesome.com/8b1e32232b.js"></script>
 </head>
 
 <body <?php body_class('theme-preset-active creatives'); ?>>
@@ -63,7 +65,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <div class="header_search">
                                 <?php get_search_form(); ?>
                             </div>
-                            <a href="<?php echo home_url('/add-profile/'); ?>">
+                            <a href="<?php echo home_url('/edit-profile/'); ?>">
                                 <i class="fas fa-user"></i>
                                 <?php if ( is_user_logged_in() ): ?>
                                     <span>Your Profile</span>

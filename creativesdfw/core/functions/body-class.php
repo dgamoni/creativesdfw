@@ -25,5 +25,9 @@ function add_custom_body_class( $classes ) {
         $classes[] = 'page-' . $post->post_name;
     }
 
+    // if ( is_user_logged_in() ) {
+    //     $classes[] = 'user_logged_in_now';
+    // }
+
     return $classes;
 }

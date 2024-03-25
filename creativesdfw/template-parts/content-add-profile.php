@@ -31,7 +31,7 @@
 				<div class="notic"><p>Your subscription plan - <?php echo $plan; ?>.</p></div>
 				<!-- <div class="notic <?php echo $plan; ?>"><a href="/listing-prices/">Please upgrade your plan to add more information</a></div> -->
 				<a class="front_log_out btn btn-outline-success btn-acf" id="" href="<?php echo home_url('/edit-profile/'); ?>" ><?php esc_html_e( 'Edit Profile' ,'login-with-ajax') ?></a> 
-				<a class="front_log_out btn btn-outline-success btn-acf" id="wp-logout" href="<?php echo wp_logout_url( home_url() ); ?>"><?php esc_html_e( 'Log Out' ,'login-with-ajax') ?></a> 
+				<a class="front_log_out btn btn-outline-success btn-acf" id="wp-logout" href="<?php echo wp_logout_url( home_url('/add-profile/') ); ?>"><?php esc_html_e( 'Log Out' ,'login-with-ajax') ?></a> 
 				
 			<?php } else {
 				echo '<p>'. __('Please register to begin creating your profile <br>or log in to edit it.', ''). '</p>';

@@ -51,7 +51,16 @@ function check_status_plan($user_email) {
 	        )
 	    )
 	);
-	$entries   = GFAPI::get_entries( $form_id, $search_criteria ); 	
+	$entries   = GFAPI::get_entries( $form_id, $search_criteria ); 
+
+	// add support coupon
+		$coupon_feed = get_gravity_coupon_feed($form_id);
+		$execude_cupon = array();
+		foreach ( $coupon_feed as $key => $feeds) {
+			array_push($execude_cupon, $feeds["meta"]["couponCode"]);
+		}
+		//var_dump($execude_cupon);
+	//end 	
 
 	foreach ($entries as $key => $user_plan_) {
 
@@ -92,10 +101,17 @@ function check_status_plan($user_email) {
 
 		//var_dump($diff->days);
 		//var_dump($user_plan_['payment_status']);
+		//var_dump($user_plan_[10]);
+		//$execude_cupon = array('GLOBEMONEY','ADMIN');
+		//$execude_cupon = array('ADMIN');
+		//$execude_cupon = array();
+		//var_dump($user_plan_['payment_status']);
+		//var_dump(in_array( $user_plan_[10], $execude_cupon));
 
 		//if($user_plan_['payment_status'] == 'Paid' && $diff->days < 365) {
 		//if($user_plan_['payment_status'] == 'Active' && $diff->days < 365) { // fix for new stripe plugin
-		if($user_plan_['payment_status'] == 'Active' || $user_plan_[10] == 'ADMIN' && $diff->days < 365) { // add cupon for admin
+		// if($user_plan_['payment_status'] == 'Active' || $user_plan_[10] == 'ADMIN' && $diff->days < 365) { // add cupon for admin
+		if($user_plan_['payment_status'] == 'Active' || in_array( $user_plan_[10], $execude_cupon) && $diff->days < 365) { // add cupon for admin
 			$status = 'Active';
 			
 			if($plan == 'Free') {
@@ -190,3 +206,24 @@ function check_user_post($profie_id) {
 		return false;
 	}
 }
+
+function get_gravity_coupon_feed( $form_id = null ) {
+		global $wpdb;
+
+		$form_filter     = is_numeric( $form_id ) ? $wpdb->prepare( 'AND form_id=%d', absint( $form_id ) ) : '';
+		$form_table_name = RGFormsModel::get_form_table_name();
+
+		//only get coupons associated with active forms (is_trash = 0) per discussion with alex/dave
+		//use is_trash is null to get the coupons associated with the "Any form" option because form id will be zero and the join will not include the coupon without this
+		$sql = $wpdb->prepare(
+			"SELECT af.* FROM {$wpdb->prefix}gf_addon_feed af LEFT JOIN {$form_table_name} f ON af.form_id = f.id
+                               WHERE addon_slug=%s {$form_filter} AND (is_trash = 0 OR is_trash is null)", 'gravityformscoupons'
+		);
+
+		$results = $wpdb->get_results( $sql, ARRAY_A );
+		foreach ( $results as &$result ) {
+			$result['meta'] = json_decode( $result['meta'], true );
+		}
+
+		return $results;
+	}

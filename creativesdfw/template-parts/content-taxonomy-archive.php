@@ -44,8 +44,8 @@ $taxonomy_terms = get_terms( $taxonomy, array(
 						  </div>
 						  <select class="custom-select" id="sort_profile" aria-label="" data-tax="<?php echo $taxonomy; ?>" data-term="<?php echo 'all';  ?>">
 						    <option value="sponsor" selected>Sponsored</option>
-						    <option value="DESC">DESC</option>
-						    <option value="ASC">ASC</option>
+						    <option value="DESC">Z-A</option>
+						    <option value="ASC">A-Z</option>
 						    <!-- <option value="date">Date</option> -->
 						    <!-- <option value="name">Name</option> -->
 						  </select>

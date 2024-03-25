@@ -187,3 +187,26 @@ function get_administrator_email(){
       } 
   return $multiple_to_recipients;
 }
+
+
+//add_filter('acf/validate_value/key=_post_title', 'my_acf_validate_business_name', 10, 4);
+function my_acf_validate_business_name( $valid, $value, $field, $input ){
+  
+  // bail early if value is already invalid
+  // if( !$valid ) {
+  //   return $valid;
+  // }
+  
+  
+  if( !$value ) {
+    
+    $value = 'no-title';
+    
+  }
+  
+  
+  // return
+  return $valid;
+  
+  
+}

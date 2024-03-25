@@ -10,6 +10,7 @@
 
 $logo = get_field('Logo', $post->ID);
 $size = 'full'; 
+$logo_size = array( 'width' => 125, 'height' => 125 );
 $business_description = get_field('business_description', $post->ID);
 $location = get_field('map', $post->ID);
 
@@ -24,6 +25,15 @@ $awards_listed = get_field('awards_listed', $post->ID);
 $portfolio_group = get_field('portfolio_group', $post->ID);
 $porfolio_size = array( 'width' => 280, 'height' => 250 );
 $profile_testimonials = get_field('profile_testimonials', $post->ID);
+
+$phone = get_field('phone', $post->ID );
+$business_name = get_field('business-name', $post->ID);
+$address = get_field('address', $post->ID );
+$email = get_field('email', $post->ID );
+$website = get_field('website', $post->ID );
+$blah = parse_url($website);
+$website_ = preg_replace('/^www\./', '', $blah['host']);
+
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -31,7 +41,10 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
     <header class="container profile-container entry-header-profile">
 	    <div class="row">
 	    	<div class="profile-title col-md-6">
-	    		<?php echo wp_get_attachment_image( $logo, $size ); ?>
+	    		<?php //echo wp_get_attachment_image( $logo, $size ); ?>
+	    		<?php if ( $logo ) { ?>
+					<img src="<?php echo bfi_thumb( wp_get_attachment_image_url($logo), $logo_size ); ?>">
+				<?php } ?>
 				<?php the_title( '<h1 class="">', '</h1>' ); ?>
 			</div>
 			<div class="col-md-6">
@@ -40,7 +53,7 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 				  <div class="padded">
 				    <ul>
 				      <li class="active"><a id="link1" class="nav-summary" href="#summary">Summary</a></li>
-				      <li><a id="link2" class="nav-focus" href="#focus">Focus</a></li>
+				      <li><a id="link2" class="nav-focus" href="#focus">Awards</a></li>
 				      <li><a id="link3" class="nav-portfolio" href="#portfolio">Portfolio</a></li>
 				      <li><a id="link4" class="nav-reviews" href="#reviews">Reviews</a></li>
 				      <!-- <li class="scrollTop"><a href="#"><span class="entypo-up-open"></span></a></li> -->
@@ -180,6 +193,50 @@ $profile_testimonials = get_field('profile_testimonials', $post->ID);
 				</div> <!-- /row -->
 			</div> <!-- /#reviews -->
 		<?php endif; ?>
+
+			<!-- contact -->
+			<div id="contact" class="section">
+			    <div class="row">
+
+			    	<div class="reviews-title col-md-12">		
+						<h2>Contact</h2>
+					</div>	<!-- /reviews-title -->
+
+					<div class="contact-data col-md-4">
+
+							<?php if( $business_name ): ?>
+								<?php echo '<h4>'.$business_name.'</h4>'; ?>
+							<?php endif; ?>
+
+							<?php if($address && $address != ' '): ?>
+								<div class="loop-profile-address"><i class="fas fa-map-marker-alt"></i><?php echo $address; ?></div>
+							<?php endif; ?>
+
+							<?php if($phone): ?>
+								<div class="loop-profile-phone"><i class="fas fa-phone-square"></i><?php echo $phone; ?></div>
+							<?php endif; ?>
+
+							<?php if($email): ?>
+								<div class="loop-profile-email"><i class="fas fa-envelope"></i><?php echo $email; ?></div>
+							<?php endif; ?>
+
+							<?php if($website_): ?>
+								<div class="loop-profile-website"><i class="fas fa-globe"></i><a href="<?php echo $website; ?>" target="_blank"><?php echo $website_; ?></a></div>
+							<?php endif; ?>
+
+					</div> <!-- /contact-data -->
+
+					<div class="contact-map col-md-6">
+						<?php //var_dump($location); ?>
+						<?php if ( $location['address'] ) : ?>
+							<div class="acf-map">
+								<div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>"></div>
+							</div>
+						<?php endif; ?>							
+					</div> <!-- /contact-map -->
+
+				</div> 
+			</div> <!-- /#contact -->
 
 	</div><!-- .entry-content -->
 

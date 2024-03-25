@@ -1,5 +1,20 @@
 jQuery(document).ready(function($) {
 
+
+		// aCf Validate fields
+		// $(document).on('acf/validate_field', function(e, field){
+
+		// 	// vars
+		// 	$field = $(field);
+		// 	$business_name = $('#acf-field_5c656a72dcf26').val();
+			
+		// 	// set validation to false on this field
+		// 	if(!$business_name) {
+		// 		$field.data('validation', true);
+		// 	}
+				
+		// });
+
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var hash = $(e.target).attr('href');
         if (history.pushState) {
@@ -15,10 +30,21 @@ jQuery(document).ready(function($) {
       }
 	  
      $('.header_search_link').click(function(e) {
+
          e.preventDefault();
+
+         console.log( $(window).width() );
+         var  ww = $(window).width();
+         var ww_margin = '-180px';
+         if(ww <= 768 && ww > 536) {
+           ww_margin = '24px';
+         } else if ( ww <= 536 ) {
+           ww_margin = '0px';
+         }
+
          $('.header_search .search-form').animate({
               // right: '-18px',
-              left: '-180px',
+              left: ww_margin,
               opacity: '1'
           });
          // $('.header_search .search-submit').animate({
@@ -31,7 +57,8 @@ jQuery(document).ready(function($) {
 	    minSlides: 2,
 	    maxSlides: 3,
 	    slideMargin: 10,
-	     pager: false
+	    pager: false,
+      infiniteLoop: false,
 	  });
 
 	  // $('.image-link').magnificPopup({
@@ -57,36 +84,52 @@ jQuery(document).ready(function($) {
         $(el).attr('data-relevance', index);
     });
 
-    
+    // set default title
+    $('#acf-_post_title').val('no-title');
 
     //free
     $('#acf-field_5c653bd362c8a').keyup(function() {
       //console.log($(this).val());
       $('#acf-_post_title').val( $(this).val() );
+      if($(this).val() == '') {
+         $('#acf-_post_title').val('no-title');
+      }
     });
 
     //silver
     $('#acf-field_5c654f08ba383').keyup(function() {
       //console.log($(this).val());
       $('#acf-_post_title').val( $(this).val() );
+      if($(this).val() == '') {
+         $('#acf-_post_title').val('no-title');
+      }      
     });
 
     //gold
     $('#acf-field_5c65595a0262a').keyup(function() {
       //console.log($(this).val());
       $('#acf-_post_title').val( $(this).val() );
+      if($(this).val() == '') {
+         $('#acf-_post_title').val('no-title');
+      }      
     });
 
     //gold 2
     $('#acf-field_5c656a72dcf26').keyup(function() {
       //console.log($(this).val());
       $('#acf-_post_title').val( $(this).val() );
+      if($(this).val() == '') {
+         $('#acf-_post_title').val('no-title');
+      }      
     });
 
     //premium
     $('#acf-field_5c657779b5f07').keyup(function() {
       //console.log($(this).val());
       $('#acf-_post_title').val( $(this).val() );
+      if($(this).val() == '') {
+         $('#acf-_post_title').val('no-title');
+      }      
     });
 
 

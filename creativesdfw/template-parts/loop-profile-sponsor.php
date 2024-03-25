@@ -11,6 +11,7 @@ $website_ = preg_replace('/^www\./', '', $blah['host']);
 
 $logo = get_field('Logo', $post->ID);
 $size = 'full'; 
+$logo_size = array( 'width' => 125, 'height' => 125 );
 $business_description = get_field('business_description', $post->ID);
 
 //$profile_testimonials = get_field('profile_testimonials', $post->ID);
@@ -59,7 +60,10 @@ if ( $status_sponsor ) {
 	<div class="row sponsor-header">
 		<div class="loop-profile-title-wrap col-xl-10">
 			<div class="loop-profile-title">
-				<?php echo wp_get_attachment_image( $logo, $size ); ?>
+				<?php //echo wp_get_attachment_image( $logo, $size ); ?>
+				<?php if ( $logo ) { ?>
+					<img src="<?php echo bfi_thumb( wp_get_attachment_image_url($logo), $logo_size ); ?>">
+				<?php } ?>
 				<span><?php echo get_the_title($post->ID); ?></span>
 				<div class="loop-profile-sponsor"><?php echo $status_sponsor_; ?></div>
 			</div>
@@ -98,7 +102,7 @@ if ( $status_sponsor ) {
 			<!-- <div class="visit"> -->
 				<a href="<?php echo $website; ?>" class="visit bg" target="_blank"><span>Visit Website</span><i class="fas fa-globe"></i></a>
 				<a href="<?php echo get_permalink($post->ID); ?>" class="visit" target="_blank"><span>View Profile</span><i class="fas fa-dot-circle"></i></a>
-				<a href="#" class="visit" target="_blank"><span>Contact</span><i class="fas fa-comment-alt"></i></a>
+				<a href="<?php echo get_permalink($post->ID); ?>#contact" class="visit" target="_blank"><span>Contact</span><i class="fas fa-comment-alt"></i></a>
 			<!-- </div> -->
 		</div>
 

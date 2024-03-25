@@ -236,8 +236,20 @@ function set_primary_func() {
 	$d2 = new DateTime('now');
 	$diff = $d2->diff($d1);
 	$res['diff'] = $diff->days;
+	//$execude_cupon = array('GLOBEMONEY','ADMIN');
 
-	if ( $entry['payment_status'] == 'Active' && $diff->days < 365 ) {
+	// add support coupon
+		$form_id = 1;
+		$coupon_feed = get_gravity_coupon_feed($form_id);
+		$execude_cupon = array();
+		foreach ( $coupon_feed as $key => $feeds) {
+			array_push($execude_cupon, $feeds["meta"]["couponCode"]);
+		}
+		//var_dump($execude_cupon);
+	//end
+
+	//if ( $entry['payment_status'] == 'Active' && $diff->days < 365 ) {
+	if( $entry['payment_status'] == 'Active' || in_array( $entry[10], $execude_cupon) && $diff->days < 365) { // add cupon for admin
 
 		update_field('subscription_primary_id', $entry['id'], 'user_'.$user->ID.'');
 		update_field('subscription_plan', $plan, 'user_'.$user->ID.'');

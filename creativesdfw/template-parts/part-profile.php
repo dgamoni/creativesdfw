@@ -33,7 +33,7 @@ $date = date_create($user->user_registered);
 				<!-- <li class="list-group-item text-right"><span class="float-left"><strong>Date</strong></span><?php echo date_format($date, 'Y-m-d'); ?></li> -->
 				<li class="list-group-item text-right">
 					<span class="float-left">
-						<a class="front_log_out btn-acf pull-right" id="wp-logout" href="<?php echo wp_logout_url( home_url() ); ?>"><?php esc_html_e( 'Log Out' ,'login-with-ajax') ?></a>
+						<a class="front_log_out btn-acf pull-right" id="wp-logout" href="<?php echo wp_logout_url( home_url('/edit-profile/') ); ?>"><?php esc_html_e( 'Log Out' ,'login-with-ajax') ?></a>
 					</span>
 				</li>
 			</ul> 

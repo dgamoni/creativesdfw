@@ -38,8 +38,8 @@
 						  </div>
 						  <select class="custom-select" id="sort_profile" aria-label="" data-tax="<?php echo get_queried_object()->taxonomy; ?>" data-term="<?php echo get_queried_object()->term_id; ?>">
 						    <option value="sponsor" selected>Sponsored</option>
-						    <option value="DESC">DESC</option>
-						    <option value="ASC">ASC</option>
+						    <option value="DESC">Z-A</option>
+						    <option value="ASC">A-Z</option>
 						    <!-- <option value="date">Date</option> -->
 						    <!-- <option value="name">Name</option> -->
 						  </select>
